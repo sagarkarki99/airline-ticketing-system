@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TicketCounterModule } from './ticket-counter/ticket-counter.module';
 import { AirlinesCounterModule } from './airlines-counter/airlines-counter.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AirlineEntity } from './entities/AirlineEntity';
 
 @Module({
   imports: [
@@ -11,8 +12,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     AirlinesCounterModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'airlines-db-sqlite',
-      entities: [],
+      database: 'airlines-db.sqlite',
+      entities: [AirlineEntity],
       synchronize: true,
     }),
   ],

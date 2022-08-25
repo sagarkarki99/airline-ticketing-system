@@ -10,11 +10,13 @@ export class AirlinesCounterService {
     private airlinesRepository: Repository<AirlineEntity>,
   ) {}
 
-  addNew(airlineName: string, totalAirplanes: number) {
+  addNew(name: string, totalAirplanes: number) {
     const airline = this.airlinesRepository.create({
-      name: airlineName,
+      name,
       totalAirplanes,
     });
+    console.log(airline.name);
+
     return this.airlinesRepository.save(airline);
   }
 
@@ -23,6 +25,9 @@ export class AirlinesCounterService {
   }
   findByName(name: string) {
     return this.airlinesRepository.findOneBy({ name });
+  }
+  getAllAirlines() {
+    return this.airlinesRepository.find();
   }
 
   async update(id: number, attr: Partial<AirlineEntity>) {

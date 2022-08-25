@@ -1,0 +1,12 @@
+POST http://localhost:3000/airlines
+Content-Type: application/json
+
+{
+    "name": "Testy Airlines",
+    "totalAirplanes": 30
+}
+
+
+### Get all airlines
+GET http://localhost:3000/airlines/122
+content-type: application/json
