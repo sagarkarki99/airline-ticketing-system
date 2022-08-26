@@ -1,13 +1,13 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AirlineEntity } from 'src/entities/AirlineEntity';
+import { Airline } from 'src/entities/Airline.entity';
 import { QueryFailedError, Repository } from 'typeorm';
 
 @Injectable()
 export class AirlinesCounterService {
   constructor(
-    @InjectRepository(AirlineEntity)
-    private airlinesRepository: Repository<AirlineEntity>,
+    @InjectRepository(Airline)
+    private airlinesRepository: Repository<Airline>,
   ) {}
 
   async addNew(name: string, totalAirplanes: number) {
@@ -39,7 +39,7 @@ export class AirlinesCounterService {
     return this.airlinesRepository.find();
   }
 
-  async update(id: number, attr: Partial<AirlineEntity>) {
+  async update(id: number, attr: Partial<Airline>) {
     const airline = await this.airlinesRepository.findOneBy({ id });
     Object.assign(airline, attr);
 
