@@ -22,9 +22,7 @@ export class AirlinesCounterController {
       body.name,
       body.totalAirplanes,
     );
-    console.log('Added successfully///');
-
-    console.log(line);
+    return 'Airline added successfully.';
   }
 
   @Get('/')
@@ -44,7 +42,7 @@ export class AirlinesCounterController {
   addAirplaneFor(@Param('id') id: string, @Body() airplanes: number) {}
 
   @Patch('/:id')
-  updateAirplane(id: string, @Body() body: UpdateAirlineDto) {
+  updateAirplane(@Param('id') id: string, @Body() body: UpdateAirlineDto) {
     return this.airlinesCounterService.update(parseInt(id), body);
   }
 }

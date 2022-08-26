@@ -33,6 +33,7 @@ export class AirlinesCounterService {
   async update(id: number, attr: Partial<AirlineEntity>) {
     const airline = await this.airlinesRepository.findOneBy({ id });
     Object.assign(airline, attr);
+
     return this.airlinesRepository.save(airline);
   }
 }

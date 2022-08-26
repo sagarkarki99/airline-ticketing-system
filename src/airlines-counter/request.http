@@ -2,7 +2,7 @@ POST http://localhost:3000/airlines
 Content-Type: application/json
 
 {
-    "name": "Nepal Airlines",
+    "name": "Nepal 234 Airlines",
     "totalAirplanes": 30
 }
 
@@ -10,3 +10,12 @@ Content-Type: application/json
 ### Get all airlines
 GET http://localhost:3000/airlines/
 content-type: application/json
+
+
+### update airlines
+PATCH http://localhost:3000/airlines/1
+content-type: application/json
+
+{
+    "name": "American airlines"
+}
