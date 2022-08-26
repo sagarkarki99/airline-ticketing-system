@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AirlineEntity } from 'src/entities/AirlineEntity';
-import { Repository } from 'typeorm';
+import { QueryFailedError, Repository } from 'typeorm';
 
 @Injectable()
 export class AirlinesCounterService {
@@ -10,14 +10,23 @@ export class AirlinesCounterService {
     private airlinesRepository: Repository<AirlineEntity>,
   ) {}
 
-  addNew(name: string, totalAirplanes: number) {
-    const airline = this.airlinesRepository.create({
-      name,
-      totalAirplanes,
-    });
-    console.log(airline.name);
+  async addNew(name: string, totalAirplanes: number) {
+    try {
+      const airline = this.airlinesRepository.create({
+        name,
+        totalAirplanes,
+      });
+      console.log(airline.name);
 
-    return this.airlinesRepository.save(airline);
+      const value = await this.airlinesRepository.save(airline);
+      console.log(`This is value : ${value}`);
+      return value;
+    } catch (error) {
+      if (error instanceof QueryFailedError) {
+        throw new HttpException('Airline name already exist', 422);
+      }
+      console.log(`This is error in catch block : ${error}`);
+    }
   }
 
   findById(id: number) {
