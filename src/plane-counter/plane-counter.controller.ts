@@ -18,7 +18,7 @@ export class PlaneCounterController {
 
   @Post('/')
   addNew(@Body() body: NewPlaneDto) {
-    return this.service.add(body.name, body.airlineId);
+    return this.service.add(body.name, body.airlineId, body.totalSeats);
   }
 
   @Get('/')

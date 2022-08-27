@@ -8,5 +8,6 @@ import { PlaneCounterService } from './plane-counter.service';
   controllers: [PlaneCounterController],
   providers: [PlaneCounterService],
   imports: [TypeOrmModule.forFeature([Plane])],
+  exports: [PlaneCounterService],
 })
 export class PlaneCounterModule {}

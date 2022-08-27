@@ -3,7 +3,8 @@ Content-Type: application/json
 
 {
     "name": "Jet 771",
-    "airlineId" : "3057cbdc-4022-4268-a557-1d57b90b8b7c"
+    "airlineId" : "7d22497b-94eb-4903-8f43-ffd73f9413b5",
+    "totalSeats": 155
 }
 
 
@@ -14,7 +15,7 @@ content-type: application/json
 
 
 ### Get all planes by airlineId
-GET http://localhost:3000/planes?airlineId=30cbdc-4022-4268-a557-1d57b90b8b7c
+GET http://localhost:3000/planes
 content-type: application/json
 
 

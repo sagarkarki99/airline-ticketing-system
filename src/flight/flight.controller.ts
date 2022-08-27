@@ -1,13 +1,14 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { PlaneCounterService } from 'src/plane-counter/plane-counter.service';
 import { NewFlightDto } from './dtos/new-flight.dto';
 import { FlightService } from './flight.service';
 
-@Controller('flight')
+@Controller('flights')
 export class FlightController {
   constructor(private readonly flightService: FlightService) {}
 
   @Post('/')
-  addNew(@Body() body: NewFlightDto) {
+  async addNew(@Body() body: NewFlightDto) {
     return this.flightService.add(body.planeId, body.date);
   }
 

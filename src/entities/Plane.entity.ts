@@ -10,4 +10,7 @@ export class Plane {
 
   @Column()
   name: string;
+
+  @Column()
+  totalSeats: number;
 }

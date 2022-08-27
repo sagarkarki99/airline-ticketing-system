@@ -2,8 +2,8 @@ POST http://localhost:3000/airlines
 Content-Type: application/json
 
 {
-    "name": "American Express Airlines",
-    "totalAirplanes": 30
+    "name": "Nepal Airlines",
+    "totalAirplanes": 2
 }
 
 

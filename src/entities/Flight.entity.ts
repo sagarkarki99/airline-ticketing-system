@@ -12,5 +12,5 @@ export class Flight {
   date: Date;
 
   @Column()
-  isSeatAvailable: boolean;
+  availableSeats: number;
 }

@@ -1,0 +1,12 @@
+POST  http://localhost:3000/flights
+content-type: application/json
+
+{
+    "date":1231231234,
+    "planeId" : "5a7d5029-f4db-4bb8-ae51-6f88122ae0ff"
+}
+
+
+### Get all available flights
+Get http://localhost:3000/flights
+content-type: application/json

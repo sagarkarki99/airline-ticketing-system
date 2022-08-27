@@ -1,4 +1,4 @@
-import { IsString, IsUUID } from 'class-validator';
+import { IsNumber, IsString, IsUUID } from 'class-validator';
 
 export class NewPlaneDto {
   @IsString()
@@ -7,4 +7,7 @@ export class NewPlaneDto {
   @IsString()
   @IsUUID()
   airlineId: string;
+
+  @IsNumber()
+  totalSeats: number;
 }

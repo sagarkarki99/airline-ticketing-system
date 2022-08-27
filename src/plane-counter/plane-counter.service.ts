@@ -9,8 +9,8 @@ export class PlaneCounterService {
     @InjectRepository(Plane) private readonly repo: Repository<Plane>,
   ) {}
 
-  async add(name: string, airlineId: string) {
-    const plane = await this.repo.create({ name, airlineId });
+  async add(name: string, airlineId: string, totalSeats: number) {
+    const plane = await this.repo.create({ name, airlineId, totalSeats });
     return this.repo.save(plane);
   }
 

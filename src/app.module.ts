@@ -8,6 +8,7 @@ import { Airline } from './entities/Airline.entity';
 import { PlaneCounterModule } from './plane-counter/plane-counter.module';
 import { Plane } from './entities/Plane.entity';
 import { FlightModule } from './flight/flight.module';
+import { Flight } from './entities/Flight.entity';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { FlightModule } from './flight/flight.module';
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'airlines-db.sqlite',
-      entities: [Airline, Plane],
+      entities: [Airline, Plane, Flight],
       synchronize: true,
     }),
     PlaneCounterModule,
