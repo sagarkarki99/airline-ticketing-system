@@ -6,10 +6,10 @@ export class Flight {
   id: string;
 
   @Column()
-  planId: string;
+  planeId: string;
 
   @Column()
-  dateTime: Date;
+  date: Date;
 
   @Column()
   isSeatAvailable: boolean;

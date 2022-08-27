@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Airline } from './entities/Airline.entity';
 import { PlaneCounterModule } from './plane-counter/plane-counter.module';
 import { Plane } from './entities/Plane.entity';
+import { FlightModule } from './flight/flight.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { Plane } from './entities/Plane.entity';
       synchronize: true,
     }),
     PlaneCounterModule,
+    FlightModule,
   ],
   controllers: [AppController],
   providers: [AppService],
