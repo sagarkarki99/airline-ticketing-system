@@ -13,10 +13,12 @@ export class FlightService {
   ) {}
 
   async add(planeId: string, date: number) {
+    const d = new Date(date);
+
     const plane = await this.planeService.getPlaneById(planeId);
     const flight = await this.repo.create({
       planeId,
-      date,
+      date: d,
       availableSeats: plane.totalSeats,
     });
     return this.repo.save(flight);
