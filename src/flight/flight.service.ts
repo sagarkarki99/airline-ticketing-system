@@ -46,4 +46,8 @@ export class FlightService {
       },
     });
   }
+
+  async getFlightById(id: string) {
+    return this.repo.findOneBy({ id });
+  }
 }

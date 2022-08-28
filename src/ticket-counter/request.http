@@ -1,0 +1,7 @@
+POST http://localhost:3000/ticket-counter/create
+content-type: application/json
+
+{
+    "seatNo":"45",
+    "flightId":"483a3934-454a-4503-97b3-39b6c3658c6e"
+}

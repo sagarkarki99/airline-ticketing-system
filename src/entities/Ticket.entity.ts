@@ -1,5 +1,6 @@
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity()
 export class Ticket {
   @PrimaryGeneratedColumn()
   ticketNo: number;
@@ -20,8 +21,8 @@ export class Ticket {
   status: TicketStatus;
 }
 
-enum TicketStatus {
-  booked,
-  cancelled,
-  success,
+export enum TicketStatus {
+  booked = 'booked',
+  cancelled = 'cancelled',
+  success = 'success',
 }

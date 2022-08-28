@@ -20,6 +20,7 @@ import { Ticket } from './entities/Ticket.entity';
       database: 'airlines-db.sqlite',
       entities: [Airline, Plane, Flight, Ticket],
       synchronize: true,
+      autoLoadEntities: true,
     }),
     PlaneCounterModule,
     FlightModule,
