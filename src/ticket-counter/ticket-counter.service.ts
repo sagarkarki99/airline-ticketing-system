@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Flight } from 'src/entities/Flight.entity';
 import { Ticket, TicketStatus } from 'src/entities/Ticket.entity';
 import { FlightService } from 'src/flight/flight.service';
 import { Repository } from 'typeorm';
@@ -12,11 +13,15 @@ export class TicketCounterService {
   ) {}
 
   async create(userId: string, flightId: string, seatNo: number) {
-    console.log('Getting flight...');
-
     const flight = await this.getFlightFor(flightId);
     console.log('Flight found... Creating ticket now...');
 
+    const value = await this.saveTicket(seatNo, userId, flight);
+    console.log('Ticket saved successfully');
+    return value;
+  }
+
+  private async saveTicket(seatNo: number, userId: string, flight: Flight) {
     const ticket = this.repo.create({
       seatNo,
       userId,
@@ -25,13 +30,14 @@ export class TicketCounterService {
       status: TicketStatus.booked,
     });
     const value = await this.repo.save(ticket);
-    console.log('Ticket saved successfully');
     return value;
   }
 
   private async getFlightFor(flightId: string) {
+    console.log('Getting flight...');
     const flight = await this.flightService.getFlightById(flightId);
     if (!flight) {
+      console.log('flight not found.');
       throw new NotFoundException('Flight not found!');
     }
     return flight;
