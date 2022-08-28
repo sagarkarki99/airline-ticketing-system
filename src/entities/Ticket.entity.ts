@@ -14,6 +14,9 @@ export class Ticket {
   userId: string;
 
   @Column()
+  createdOn: number;
+
+  @Column()
   status: TicketStatus;
 }
 
