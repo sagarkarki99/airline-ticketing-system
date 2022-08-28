@@ -1,5 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { PlaneCounterService } from 'src/plane-counter/plane-counter.service';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { NewFlightDto } from './dtos/new-flight.dto';
 import { FlightService } from './flight.service';
 
@@ -12,8 +11,9 @@ export class FlightController {
     return this.flightService.add(body.planeId, body.date);
   }
 
-  @Get()
-  getFlights(@Param('planeId') planeId?: string, @Param('date') date?: number) {
-    return this.flightService.getFlights(planeId, date);
+  @Get('/')
+  getFlights(@Query('planeId') planeId: string, @Query('date') date: string) {
+    console.log(`PlaneId: ${planeId}, date: ${date}`);
+    return this.flightService.getFlights(planeId, parseInt(date));
   }
 }

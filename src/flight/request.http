@@ -2,8 +2,8 @@ POST  http://localhost:3000/flights
 content-type: application/json
 
 {
-    "date":1231231234,
-    "planeId" : "5a7d5029-f4db-4bb8-ae51-6f88122ae0ff"
+    "date":666661,
+    "planeId" : "c6b149a8-352c-4f5d-9e46-5aedf4229228"
 }
 
 

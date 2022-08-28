@@ -2,9 +2,9 @@ POST http://localhost:3000/planes
 Content-Type: application/json
 
 {
-    "name": "Jet 771",
-    "airlineId" : "7d22497b-94eb-4903-8f43-ffd73f9413b5",
-    "totalSeats": 155
+    "name": "saja yatayat",
+    "airlineId" : "04d705cf-cf5b-458d-b434-553a3727709f",
+    "totalSeats": 68
 }
 
 

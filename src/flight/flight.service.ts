@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Flight } from 'src/entities/Flight.entity';
 import { Plane } from 'src/entities/Plane.entity';
@@ -14,17 +18,32 @@ export class FlightService {
 
   async add(planeId: string, date: number) {
     const d = new Date(date);
+    console.log(`Creating date with ${d}`);
 
     const plane = await this.planeService.getPlaneById(planeId);
+    if (!plane) {
+      throw new BadRequestException('Plane not found with the given id');
+    }
     const flight = await this.repo.create({
       planeId,
-      date: d,
+      date: d.getTime(),
       availableSeats: plane.totalSeats,
     });
     return this.repo.save(flight);
   }
 
   getFlights(planeId?: string, date?: number) {
-    return this.repo.findBy({ planeId });
+    var dateTime: Date | undefined;
+
+    if (date) {
+      dateTime = new Date(date);
+      console.log(`date is ${date} and Date: ${dateTime}`);
+    }
+    return this.repo.find({
+      where: {
+        planeId,
+        date: dateTime?.getTime(),
+      },
+    });
   }
 }

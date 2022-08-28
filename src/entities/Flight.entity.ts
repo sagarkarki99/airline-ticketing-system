@@ -9,7 +9,7 @@ export class Flight {
   planeId: string;
 
   @Column()
-  date: Date;
+  date: number;
 
   @Column()
   availableSeats: number;
