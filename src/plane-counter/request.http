@@ -15,7 +15,7 @@ content-type: application/json
 
 
 ### Get all planes by airlineId
-GET http://localhost:3000/planes
+GET http://localhost:3000/planes?airlineId=
 content-type: application/json
 
 
