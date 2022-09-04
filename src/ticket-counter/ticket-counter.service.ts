@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnprocessableEntityException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Flight } from 'src/entities/Flight.entity';
 import { Ticket, TicketStatus } from 'src/entities/Ticket.entity';
@@ -16,9 +20,25 @@ export class TicketCounterService {
     const flight = await this.getFlightFor(flightId);
     console.log('Flight found... Creating ticket now...');
 
+    if (await this.isTicketAlreadyBooked(seatNo)) {
+      throw new UnprocessableEntityException(
+        'Seat is not available.',
+        'NOT_AVAILABLE',
+      );
+    }
+
     const value = await this.saveTicket(seatNo, userId, flight);
     console.log('Ticket saved successfully');
     return value;
+  }
+
+  async isTicketAlreadyBooked(seatNo: number): Promise<boolean> {
+    console.log('Validating seat no...');
+    const ticket = await this.repo.findOneBy({ seatNo });
+    if (ticket) {
+      return true;
+    }
+    return false;
   }
 
   private async saveTicket(seatNo: number, userId: string, flight: Flight) {
