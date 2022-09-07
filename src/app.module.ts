@@ -11,6 +11,7 @@ import { FlightModule } from './flight/flight.module';
 import { Flight } from './entities/Flight.entity';
 import { Ticket } from './entities/Ticket.entity';
 import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { AuthModule } from './auth/auth.module';
     PlaneCounterModule,
     FlightModule,
     AuthModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
