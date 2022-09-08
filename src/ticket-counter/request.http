@@ -1,8 +1,9 @@
 POST http://localhost:3000/ticket-counter/create
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcm1hbEBleGFtcGxlLmNvbSIsImlkIjozLCJyb2xlIjoibm9ybWFsIiwiaWF0IjoxNjYyNjM1ODM3LCJleHAiOjE2NjI2Mzk0Mzd9.eCVD2H_pYerVZmSl-7A3I8I2LEvwrFvIcowB2daxq-8
 
 {
-    "seatNo":"56",
+    "seatNo":"13",
     "flightId":"483a3934-454a-4503-97b3-39b6c3658c6e"
 }
 
@@ -11,7 +12,9 @@ content-type: application/json
 ### Get all ticket
 GET http://localhost:3000/ticket-counter/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcm1hbEBleGFtcGxlLmNvbSIsImlkIjozLCJyb2xlIjoibm9ybWFsIiwiaWF0IjoxNjYyNjI2NDY3LCJleHAiOjE2NjI2MzAwNjd9.OEsXOjPjU5MdWAHHXWkzgTn4mDx6Qe2DJdpQmzjLNDU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjo1LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjI2MzY3ODgsImV4cCI6MTY2MjY0MDM4OH0.Sb1T3vcRNb9JrBBj0AAo48P-X4jpy-ARV12Sm-XYD5U
+
+
 
 
 

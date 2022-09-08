@@ -6,6 +6,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Flight } from 'src/entities/Flight.entity';
 import { Ticket, TicketStatus } from 'src/entities/Ticket.entity';
+import { User, UserRole } from 'src/entities/User.entity';
 import { FlightService } from 'src/flight/flight.service';
 import { Repository } from 'typeorm';
 
@@ -15,8 +16,12 @@ export class TicketCounterService {
     private readonly flightService: FlightService,
     @InjectRepository(Ticket) private readonly repo: Repository<Ticket>,
   ) {}
-  getTickets() {
-    return this.repo.find();
+
+  getTickets(user: User) {
+    if (user.role === UserRole.admin) {
+      return this.repo.find();
+    }
+    return this.repo.findBy({ userId: `${user.id}` });
   }
 
   async create(userId: string, flightId: string, seatNo: number) {

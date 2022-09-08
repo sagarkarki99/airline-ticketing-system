@@ -21,9 +21,9 @@ export class TicketCounterController {
 
   @Post('/create')
   @Roles(UserRole.normal)
-  createNewTicket(@Body() body: NewTicketDto) {
+  createNewTicket(@Body() body: NewTicketDto, @User() user: _user) {
     return this.ticketService.create(
-      'UserId',
+      `${user.id}`,
       body.flightId,
       parseInt(body.seatNo),
     );
@@ -31,10 +31,8 @@ export class TicketCounterController {
 
   @Get('')
   @Roles(UserRole.normal, UserRole.admin)
-  getUserTicket(@User() user: _user) {
-    console.log(`${user}`);
-
-    return this.ticketService.getTickets();
+  getUserTickets(@User() user: _user) {
+    return this.ticketService.getTickets(user);
   }
 
   @Delete('/:ticketNumber')
