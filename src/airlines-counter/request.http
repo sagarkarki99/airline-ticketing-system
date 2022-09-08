@@ -1,9 +1,10 @@
 POST http://localhost:3000/airlines
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcm1hbEBleGFtcGxlLmNvbSIsImlkIjozLCJyb2xlIjoibm9ybWFsIiwiaWF0IjoxNjYyNjI3MzQwLCJleHAiOjE2NjI2MzA5NDB9.57gFVyLS3jkKQz-FxsS_vAoVtbctOrA6ToCCoGNyCqg
 
 {
-    "name": "Nepal Airlines",
-    "totalAirplanes": 2
+    "name": "Korean Airlines",
+    "totalAirplanes": 7
 }
 
 

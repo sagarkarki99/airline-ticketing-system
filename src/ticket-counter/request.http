@@ -11,6 +11,7 @@ content-type: application/json
 ### Get all ticket
 GET http://localhost:3000/ticket-counter/
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcm1hbEBleGFtcGxlLmNvbSIsImlkIjozLCJyb2xlIjoibm9ybWFsIiwiaWF0IjoxNjYyNjI2NDY3LCJleHAiOjE2NjI2MzAwNjd9.OEsXOjPjU5MdWAHHXWkzgTn4mDx6Qe2DJdpQmzjLNDU
 
 
 
