@@ -5,3 +5,15 @@ content-type: application/json
     "seatNo":"56",
     "flightId":"483a3934-454a-4503-97b3-39b6c3658c6e"
 }
+
+
+
+### Get all ticket
+GET http://localhost:3000/ticket-counter/
+content-type: application/json
+
+
+
+### Cancel the ticket
+DELETE http://localhost:3000/ticket-counter/23323
+content-type: application/json

@@ -15,12 +15,15 @@ export class TicketCounterService {
     private readonly flightService: FlightService,
     @InjectRepository(Ticket) private readonly repo: Repository<Ticket>,
   ) {}
+  getTickets() {
+    return this.repo.find();
+  }
 
   async create(userId: string, flightId: string, seatNo: number) {
     const flight = await this.getFlightFor(flightId);
     console.log('Flight found... Creating ticket now...');
 
-    if (await this.isTicketAlreadyBooked(seatNo)) {
+    if (await this.isTicketAlreadyBooked(seatNo, flightId)) {
       throw new UnprocessableEntityException(
         'Seat is not available.',
         'NOT_AVAILABLE',
@@ -32,9 +35,24 @@ export class TicketCounterService {
     return value;
   }
 
-  async isTicketAlreadyBooked(seatNo: number): Promise<boolean> {
+  async cancelTicketFor(ticketNo: number) {
+    const ticket = await this.repo.findOneBy({ ticketNo });
+    if (!ticket) {
+      throw new NotFoundException('Ticket not found');
+    }
+    Object.assign(ticket, {
+      status: TicketStatus.cancelled,
+    });
+
+    return this.repo.save(ticket);
+  }
+
+  async isTicketAlreadyBooked(
+    seatNo: number,
+    flightId: string,
+  ): Promise<boolean> {
     console.log('Validating seat no...');
-    const ticket = await this.repo.findOneBy({ seatNo });
+    const ticket = await this.repo.findOneBy({ seatNo, flightId });
     if (ticket) {
       return true;
     }
