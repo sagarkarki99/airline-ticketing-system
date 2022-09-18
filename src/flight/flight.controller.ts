@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Patch,
   Post,
   Query,
@@ -12,6 +13,7 @@ import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
 import { RoleGuard } from 'src/auth/guard/role.guard';
 import { User } from 'src/entities/User.entity';
 import { NewFlightDto } from './dtos/new-flight.dto';
+import { UpdateFlightDto } from './dtos/update-flight.dto';
 import { FlightService } from './flight.service';
 
 @UseGuards(JwtAuthGuard, RoleGuard)
@@ -30,8 +32,12 @@ export class FlightController {
     return this.flightService.getFlights(planeId, parseInt(date));
   }
 
-  @Patch('/')
-  updateFlight(@Body() body, @Admin() admin: User) {
-    console.log(`User: ${admin.email}`);
+  @Patch('/:id')
+  updateFlight(
+    @Body() body: UpdateFlightDto,
+    @Param('id') id: string,
+    @Admin() admin: User,
+  ) {
+    return this.flightService.update(id, body);
   }
 }
