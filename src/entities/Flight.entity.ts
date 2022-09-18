@@ -13,4 +13,14 @@ export class Flight {
 
   @Column()
   availableSeats: number;
+
+  @Column()
+  status: string;
+}
+
+export enum FlightStatus {
+  inAir = 'inAir',
+  postponed = 'postponed',
+  completed = 'completed',
+  ready = 'ready',
 }

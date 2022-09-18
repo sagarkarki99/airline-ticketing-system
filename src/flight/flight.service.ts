@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Flight } from 'src/entities/Flight.entity';
+import { Flight, FlightStatus } from 'src/entities/Flight.entity';
 import { Plane } from 'src/entities/Plane.entity';
 import { PlaneCounterService } from 'src/plane-counter/plane-counter.service';
 import { Repository } from 'typeorm';
@@ -24,6 +24,7 @@ export class FlightService {
       planeId,
       date: d.getTime(),
       availableSeats: plane.totalSeats,
+      status: FlightStatus.ready,
     });
     return this.repo.save(flight);
   }
