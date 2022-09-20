@@ -3,20 +3,26 @@ import {
   Body,
   Controller,
   Get,
-  NotFoundException,
   Param,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { isUUID } from 'class-validator';
+import { Roles } from 'src/auth/decorators/user.decorators';
+import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
+import { RoleGuard } from 'src/auth/guard/role.guard';
+import { UserRole } from 'src/entities/User.entity';
 import { NewPlaneDto } from './dtos/new-plane.dto';
 import { PlaneCounterService } from './plane-counter.service';
 
 @Controller('planes')
+@UseGuards(JwtAuthGuard, RoleGuard)
 export class PlaneCounterController {
   constructor(private readonly service: PlaneCounterService) {}
 
   @Post('/')
+  @Roles(UserRole.admin)
   addNew(@Body() body: NewPlaneDto) {
     return this.service.add(body.name, body.airlineId, body.totalSeats);
   }
