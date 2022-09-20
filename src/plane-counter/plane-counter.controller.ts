@@ -30,15 +30,11 @@ export class PlaneCounterController {
   }
 
   @Get('/:id')
-  async getPlanesById(@Param('id') id: string) {
+  async getPlaneDetail(@Param('id') id: string) {
     if (this.isValidId(id)) {
       throw new BadRequestException('Id is not valid');
     }
-    const plane = await this.service.getPlaneById(id);
-    if (!plane) {
-      throw new NotFoundException('Plane not found');
-    }
-    return plane;
+    return this.service.getPlaneById(id);
   }
 
   private isValidId(id?: string) {

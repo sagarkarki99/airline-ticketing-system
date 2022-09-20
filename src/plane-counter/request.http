@@ -21,7 +21,7 @@ content-type: application/json
 
 
 ### Get plane by planeId
-GET http://localhost:3000/planes/a86598c-dab9-816d-df8ae2f1d9fe
+GET http://localhost:3000/planes/11daf697-a483-48b6-8742-31490b96ba38
 content-type: application/json
 
 

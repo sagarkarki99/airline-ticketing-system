@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Airline } from 'src/entities/Airline.entity';
 import { Plane } from 'src/entities/Plane.entity';
@@ -8,8 +8,12 @@ import { AirlinesCounterController } from './airlines-counter.controller';
 import { AirlinesCounterService } from './airlines-counter.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Airline, Plane]), PlaneCounterModule],
+  imports: [
+    TypeOrmModule.forFeature([Airline, Plane]),
+    forwardRef(() => PlaneCounterModule),
+  ],
   controllers: [AirlinesCounterController],
   providers: [AirlinesCounterService, PlaneCounterService],
+  exports: [AirlinesCounterService],
 })
 export class AirlinesCounterModule {}

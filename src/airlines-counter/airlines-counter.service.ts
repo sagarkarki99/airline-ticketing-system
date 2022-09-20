@@ -1,4 +1,10 @@
-import { HttpException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  forwardRef,
+  HttpException,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Airline } from 'src/entities/Airline.entity';
 import { PlaneCounterService } from 'src/plane-counter/plane-counter.service';
@@ -10,6 +16,7 @@ export class AirlinesCounterService {
   constructor(
     @InjectRepository(Airline)
     private airlinesRepository: Repository<Airline>,
+    @Inject(forwardRef(() => PlaneCounterService))
     private planeService: PlaneCounterService,
   ) {}
 
@@ -53,6 +60,7 @@ export class AirlinesCounterService {
   findById(id: string) {
     return this.airlinesRepository.findOneBy({ id });
   }
+
   findByName(name: string) {
     return this.airlinesRepository.findOneBy({ name });
   }
