@@ -2,8 +2,8 @@ POST http://localhost:3000/planes
 Content-Type: application/json
 
 {
-    "name": "saja yatayat",
-    "airlineId" : "6b2f850b-da47-49f3-9b24-87998b78b710",
+    "name": "Tara yatayat",
+    "airlineId" : "24e94c9a-9ef8-4087-89dd-7c805fbb0e16",
     "totalSeats": 68
 }
 

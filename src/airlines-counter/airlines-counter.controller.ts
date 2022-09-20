@@ -2,7 +2,6 @@ import {
   Body,
   Controller,
   Get,
-  NotFoundException,
   Param,
   Patch,
   Post,
@@ -41,10 +40,8 @@ export class AirlinesCounterController {
   @Get('/:id')
   @Roles(UserRole.admin)
   async getAirline(@Param('id') id: string) {
-    const airline = await this.airlinesCounterService.findById(parseInt(id));
-    if (!airline) {
-      throw new NotFoundException('Airline not found.', 'NOT_FOUND');
-    }
+    const airline = await this.airlinesCounterService.getAirlineDetail(id);
+    return airline;
   }
 
   @Post(':id/addMorePlanes')
@@ -54,6 +51,6 @@ export class AirlinesCounterController {
   @Patch('/:id')
   @Roles(UserRole.admin)
   updateAirplane(@Param('id') id: string, @Body() body: UpdateAirlineDto) {
-    return this.airlinesCounterService.update(parseInt(id), body);
+    return this.airlinesCounterService.update(id, body);
   }
 }

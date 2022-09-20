@@ -1,17 +1,23 @@
 POST http://localhost:3000/airlines
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM1MDc0OTQsImV4cCI6MTY2MzUxMTA5NH0.nnql_PDIs8nzwl-Zts7e1Pf_d2-N_zIfAaldebzNuvI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoyLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM2NzgyNDMsImV4cCI6MTY2MzY4MTg0M30.O-FuGRMygZAwnHTtEruZzSqBlQdWICo99PrbwvlHHZ8
 
 {
-    "name": "Nepal Airlines",
-    "totalAirplanes": 12
+    "name": "Indian Airlines",
+    "totalAirplanes": 15
 }
 
 
 ### Get all airlines
 GET http://localhost:3000/airlines/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM1MDc0OTQsImV4cCI6MTY2MzUxMTA5NH0.nnql_PDIs8nzwl-Zts7e1Pf_d2-N_zIfAaldebzNuvI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoyLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM2NzgyNDMsImV4cCI6MTY2MzY4MTg0M30.O-FuGRMygZAwnHTtEruZzSqBlQdWICo99PrbwvlHHZ8
+
+
+### Get airline details
+GET http://localhost:3000/airlines/24e94c9a-9ef8-4087-89dd-7c805fbb0e16
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoyLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM2NzgyNDMsImV4cCI6MTY2MzY4MTg0M30.O-FuGRMygZAwnHTtEruZzSqBlQdWICo99PrbwvlHHZ8
 
 ### update airlines
 PATCH http://localhost:3000/airlines/1
