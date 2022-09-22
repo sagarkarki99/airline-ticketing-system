@@ -19,7 +19,7 @@ import { PlaneCounterService } from './plane-counter.service';
 
 @Controller('planes')
 @UseGuards(JwtAuthGuard, RoleGuard)
-@ApiTags('plane-resources')
+@ApiTags('Plane-Resources')
 export class PlaneCounterController {
   constructor(private readonly service: PlaneCounterService) {}
 

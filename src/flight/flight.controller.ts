@@ -19,7 +19,7 @@ import { FlightService } from './flight.service';
 
 @UseGuards(JwtAuthGuard, RoleGuard)
 @Controller('flights')
-@ApiTags('flights-resources')
+@ApiTags('Flights-Resources')
 export class FlightController {
   constructor(private readonly flightService: FlightService) {}
 
