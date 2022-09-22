@@ -8,6 +8,7 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { Admin } from 'src/auth/decorators/user.decorators';
 import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
 import { RoleGuard } from 'src/auth/guard/role.guard';
@@ -18,6 +19,7 @@ import { FlightService } from './flight.service';
 
 @UseGuards(JwtAuthGuard, RoleGuard)
 @Controller('flights')
+@ApiTags('flights-resources')
 export class FlightController {
   constructor(private readonly flightService: FlightService) {}
 

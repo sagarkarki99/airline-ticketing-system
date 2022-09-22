@@ -7,6 +7,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { Roles, User } from 'src/auth/decorators/user.decorators';
 import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
 import { RoleGuard } from 'src/auth/guard/role.guard';
@@ -16,6 +17,7 @@ import { TicketCounterService } from './ticket-counter.service';
 
 @Controller('ticket-counter')
 @UseGuards(JwtAuthGuard, RoleGuard)
+@ApiTags('Ticket-Resourses')
 export class TicketCounterController {
   constructor(private readonly ticketService: TicketCounterService) {}
 

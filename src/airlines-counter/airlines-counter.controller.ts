@@ -7,6 +7,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/auth/decorators/user.decorators';
 import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
 import { RoleGuard } from 'src/auth/guard/role.guard';
@@ -16,6 +17,7 @@ import { NewAirlineDto, UpdateAirlineDto } from './dtos/airline.dto';
 
 @Controller('airlines')
 @UseGuards(JwtAuthGuard, RoleGuard)
+@ApiTags('Airline-resources')
 export class AirlinesCounterController {
   constructor(private airlinesCounterService: AirlinesCounterService) {}
 
