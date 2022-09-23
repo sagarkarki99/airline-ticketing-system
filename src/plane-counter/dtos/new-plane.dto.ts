@@ -7,7 +7,4 @@ export class NewPlaneDto {
   @IsString()
   @IsUUID()
   airlineId: string;
-
-  @IsNumber()
-  totalSeats: number;
 }

@@ -27,7 +27,6 @@ export class FlightService {
     const flight = await this.repo.create({
       planeId,
       date: d.getTime(),
-      availableSeats: plane.totalSeats,
       status: FlightStatus.ready,
     });
     return this.repo.save(flight);

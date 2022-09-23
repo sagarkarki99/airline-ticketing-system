@@ -1,6 +1,6 @@
 POST  http://localhost:3000/flights
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM1MDc0OTQsImV4cCI6MTY2MzUxMTA5NH0.nnql_PDIs8nzwl-Zts7e1Pf_d2-N_zIfAaldebzNuvI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM5MjY5NDUsImV4cCI6MTY2MzkzMDU0NX0.gDhejizGib--VoE7vDqSc0dayUS6xwujTXaQpV0ou5w
 
 {
     "date":666661,
@@ -11,13 +11,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQ
 ### Get all available flights
 Get http://localhost:3000/flights
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM1MTkzNDUsImV4cCI6MTY2MzUyMjk0NX0.Mgh_7ewK8OKRDo6YuVhAcvFovKoLIhE34g4ISj2vGWI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM5MjY5NDUsImV4cCI6MTY2MzkzMDU0NX0.gDhejizGib--VoE7vDqSc0dayUS6xwujTXaQpV0ou5w
 
 
 ### Update flight status
 Patch http://localhost:3000/flights/26213c0f-d27e-4d6e-9698-4c57c13578c9
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM1MTkzNDUsImV4cCI6MTY2MzUyMjk0NX0.Mgh_7ewK8OKRDo6YuVhAcvFovKoLIhE34g4ISj2vGWI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM5MjY5NDUsImV4cCI6MTY2MzkzMDU0NX0.gDhejizGib--VoE7vDqSc0dayUS6xwujTXaQpV0ou5w
 
 {
     "status": "inAir"

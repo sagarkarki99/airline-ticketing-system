@@ -18,8 +18,8 @@ export class PlaneCounterService {
     private airlineService: AirlinesCounterService,
   ) {}
 
-  async add(name: string, airlineId: string, totalSeats: number) {
-    const plane = await this.repo.create({ name, airlineId, totalSeats });
+  async add(name: string, airlineId: string) {
+    const plane = await this.repo.create({ name, airlineId });
     return this.repo.save(plane);
   }
 
@@ -37,11 +37,10 @@ export class PlaneCounterService {
     }
 
     const airline = await this.airlineService.findById(plane.airlineId);
-    const { id, name, totalSeats } = plane;
+    const { id, name } = plane;
     const planeResponse = new PlaneResponseDto();
     planeResponse.id = id;
     planeResponse.name = name;
-    planeResponse.totalSeats = totalSeats;
     planeResponse.airline = airline;
     return planeResponse;
   }

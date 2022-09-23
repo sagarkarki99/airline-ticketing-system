@@ -1,23 +1,22 @@
 POST http://localhost:3000/airlines
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoyLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM2NzgyNDMsImV4cCI6MTY2MzY4MTg0M30.O-FuGRMygZAwnHTtEruZzSqBlQdWICo99PrbwvlHHZ8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM5MjY5NDUsImV4cCI6MTY2MzkzMDU0NX0.gDhejizGib--VoE7vDqSc0dayUS6xwujTXaQpV0ou5w
 
 {
-    "name": "Indian Airlines",
-    "totalAirplanes": 15
+    "name": "American Airlines"
 }
 
 
 ### Get all airlines
 GET http://localhost:3000/airlines/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoyLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM2NzgyNDMsImV4cCI6MTY2MzY4MTg0M30.O-FuGRMygZAwnHTtEruZzSqBlQdWICo99PrbwvlHHZ8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM5MjY5NDUsImV4cCI6MTY2MzkzMDU0NX0.gDhejizGib--VoE7vDqSc0dayUS6xwujTXaQpV0ou5w
 
 
 ### Get airline details
-GET http://localhost:3000/airlines/24e94c9a-9ef8-4087-89dd-7c805fbb0e16
+GET http://localhost:3000/airlines/20f1691a-a030-4b06-98e5-262417fb0e6d
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoyLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM2NzgyNDMsImV4cCI6MTY2MzY4MTg0M30.O-FuGRMygZAwnHTtEruZzSqBlQdWICo99PrbwvlHHZ8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM5MjY5NDUsImV4cCI6MTY2MzkzMDU0NX0.gDhejizGib--VoE7vDqSc0dayUS6xwujTXaQpV0ou5w
 
 ### update airlines
 PATCH http://localhost:3000/airlines/1

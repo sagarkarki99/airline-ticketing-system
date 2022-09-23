@@ -1,10 +1,11 @@
 POST http://localhost:3000/planes
-Content-Type: application/json
+content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM5MjY5NDUsImV4cCI6MTY2MzkzMDU0NX0.gDhejizGib--VoE7vDqSc0dayUS6xwujTXaQpV0ou5w
 
 {
-    "name": "Tara yatayat",
-    "airlineId" : "24e94c9a-9ef8-4087-89dd-7c805fbb0e16",
-    "totalSeats": 68
+    "name": "Xpress 342",
+    "airlineId" : "34bbca8e-0b99-469e-8a95-b16b02df108a"
+    
 }
 
 

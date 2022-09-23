@@ -12,9 +12,6 @@ export class Flight {
   date: number;
 
   @Column()
-  availableSeats: number;
-
-  @Column()
   status: string;
 }
 
