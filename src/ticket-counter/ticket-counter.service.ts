@@ -24,18 +24,18 @@ export class TicketCounterService {
     return this.repo.findBy({ userId: `${user.id}` });
   }
 
-  async create(userId: string, flightId: string, seatNo: number) {
+  async create(userId: string, flightId: string, seatId: string) {
     const flight = await this.getFlightFor(flightId);
     console.log('Flight found... Creating ticket now...');
 
-    if (await this.isTicketAlreadyBooked(seatNo, flightId)) {
+    if (await this.isTicketAlreadyBooked(seatId, flightId)) {
       throw new UnprocessableEntityException(
         'Seat is not available.',
         'NOT_AVAILABLE',
       );
     }
 
-    const value = await this.saveTicket(seatNo, userId, flight);
+    const value = await this.saveTicket(seatId, userId, flight);
     console.log('Ticket saved successfully');
     return value;
   }
@@ -53,20 +53,20 @@ export class TicketCounterService {
   }
 
   async isTicketAlreadyBooked(
-    seatNo: number,
+    seatId: string,
     flightId: string,
   ): Promise<boolean> {
     console.log('Validating seat no...');
-    const ticket = await this.repo.findOneBy({ seatNo, flightId });
+    const ticket = await this.repo.findOneBy({ seatId, flightId });
     if (ticket) {
       return true;
     }
     return false;
   }
 
-  private async saveTicket(seatNo: number, userId: string, flight: Flight) {
+  private async saveTicket(seatId: string, userId: string, flight: Flight) {
     const ticket = this.repo.create({
-      seatNo,
+      seatId,
       userId,
       flightId: flight.id,
       createdOn: new Date().getDate(),

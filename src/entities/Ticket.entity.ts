@@ -6,7 +6,7 @@ export class Ticket {
   ticketNo: number;
 
   @Column()
-  seatNo: number;
+  seatId: string;
 
   @Column()
   flightId: string;
