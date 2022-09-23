@@ -26,7 +26,7 @@ export class FlightService {
     }
     const flight = await this.repo.create({
       planeId,
-      date: d.getTime(),
+      departureDate: d.getTime(),
       status: FlightStatus.ready,
     });
     return this.repo.save(flight);
@@ -42,7 +42,7 @@ export class FlightService {
     return this.repo.find({
       where: {
         planeId,
-        date: dateTime?.getTime(),
+        departureDate: dateTime?.getTime(),
       },
     });
   }
