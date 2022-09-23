@@ -9,8 +9,5 @@ export class AirlineDetailDto {
   name: string;
 
   @Expose()
-  totalAirplanes: number;
-
-  @Expose()
   planes: Plane[];
 }

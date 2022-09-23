@@ -7,7 +7,4 @@ export class Airline {
 
   @Column({ unique: true })
   name: string;
-
-  @Column()
-  totalAirplanes: number;
 }

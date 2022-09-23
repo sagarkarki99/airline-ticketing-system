@@ -20,11 +20,10 @@ export class AirlinesCounterService {
     private planeService: PlaneCounterService,
   ) {}
 
-  async addNew(name: string, totalAirplanes: number) {
+  async addNew(name: string) {
     try {
       const airline = this.airlinesRepository.create({
         name,
-        totalAirplanes,
       });
       console.log(airline.name);
 
@@ -48,10 +47,10 @@ export class AirlinesCounterService {
     const planes = await this.planeService.getPlanesBy(`${aId}`);
 
     const airlineOutput = new AirlineDetailDto();
-    const { id, name, totalAirplanes } = airline;
+    const { id, name } = airline;
     airlineOutput.id = id;
     airlineOutput.name = name;
-    airlineOutput.totalAirplanes = totalAirplanes;
+
     airlineOutput.planes = planes;
 
     return airlineOutput;

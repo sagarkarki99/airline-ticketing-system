@@ -26,10 +26,7 @@ export class AirlinesCounterController {
   async createNew(@Body() body: NewAirlineDto) {
     console.log(body);
 
-    const line = await this.airlinesCounterService.addNew(
-      body.name,
-      body.totalAirplanes,
-    );
+    const line = await this.airlinesCounterService.addNew(body.name);
     return 'Airline added successfully.';
   }
 
