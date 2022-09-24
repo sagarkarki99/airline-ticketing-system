@@ -6,6 +6,9 @@ export class PlaneSeat {
   id: string;
 
   @Column()
+  planeId: number;
+
+  @Column()
   seatNo: number;
 
   @Column()
