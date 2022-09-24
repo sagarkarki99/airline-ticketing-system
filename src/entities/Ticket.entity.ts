@@ -25,4 +25,5 @@ export enum TicketStatus {
   booked = 'booked',
   cancelled = 'cancelled',
   success = 'success',
+  expired = 'expired',
 }

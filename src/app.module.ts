@@ -12,6 +12,7 @@ import { Flight } from './entities/Flight.entity';
 import { Ticket } from './entities/Ticket.entity';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { PlaneSeat } from './entities/Plane-seat.entity';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { UsersModule } from './users/users.module';
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'airlines-db.sqlite',
-      entities: [Airline, Plane, Flight, Ticket],
+      entities: [Airline, Plane, Flight, Ticket, PlaneSeat],
       synchronize: true,
       autoLoadEntities: true,
     }),

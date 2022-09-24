@@ -6,16 +6,16 @@ export class PlaneSeat {
   id: string;
 
   @Column()
-  planeId: number;
+  planeId: string;
 
   @Column()
-  seatNo: number;
+  seatNo: string;
 
   @Column()
   seatType: SeatType;
 }
 
-enum SeatType {
+export enum SeatType {
   business = 'business',
   economy = 'economy',
   firstclass = 'firstclass',

@@ -1,6 +1,6 @@
 POST http://localhost:3000/airlines
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM5MjY5NDUsImV4cCI6MTY2MzkzMDU0NX0.gDhejizGib--VoE7vDqSc0dayUS6xwujTXaQpV0ou5w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjQwMTI0MTksImV4cCI6MTY2NDAxNjAxOX0.7GW50JK1hj3bIg5fimbWaZNVV837Sin2gWd05NyllGY
 
 {
     "name": "American Airlines"
@@ -10,13 +10,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQ
 ### Get all airlines
 GET http://localhost:3000/airlines/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM5MjY5NDUsImV4cCI6MTY2MzkzMDU0NX0.gDhejizGib--VoE7vDqSc0dayUS6xwujTXaQpV0ou5w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjQwMTI0MTksImV4cCI6MTY2NDAxNjAxOX0.7GW50JK1hj3bIg5fimbWaZNVV837Sin2gWd05NyllGY
 
 
 ### Get airline details
 GET http://localhost:3000/airlines/20f1691a-a030-4b06-98e5-262417fb0e6d
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM5MjY5NDUsImV4cCI6MTY2MzkzMDU0NX0.gDhejizGib--VoE7vDqSc0dayUS6xwujTXaQpV0ou5w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjQwMTI0MTksImV4cCI6MTY2NDAxNjAxOX0.7GW50JK1hj3bIg5fimbWaZNVV837Sin2gWd05NyllGY
 
 ### update airlines
 PATCH http://localhost:3000/airlines/1
