@@ -1,10 +1,20 @@
 POST http://localhost:3000/planes
 content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjM5MjY5NDUsImV4cCI6MTY2MzkzMDU0NX0.gDhejizGib--VoE7vDqSc0dayUS6xwujTXaQpV0ou5w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjQyMDc1NTIsImV4cCI6MTY2NDIxMTE1Mn0.vE9lA8xv2MZe6ajEequhkQr5--YV9uW3CkCbYV5wylU
 
 {
     "name": "Xpress 342",
-    "airlineId" : "34bbca8e-0b99-469e-8a95-b16b02df108a"
+    "airlineId" : "34bbca8e-0b99-469e-8a95-b16b02df108a",
+    "seats": [
+        {
+            "seatNo": "A34",
+            "type": "busierness"
+        },
+        {
+            "seatNo": "A04",
+            "type": "economy"
+        }
+    ]
     
 }
 

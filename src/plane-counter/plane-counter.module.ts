@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AirlinesCounterModule } from 'src/airlines-counter/airlines-counter.module';
 import { AirlinesCounterService } from 'src/airlines-counter/airlines-counter.service';
 import { Airline } from 'src/entities/Airline.entity';
+import { PlaneSeat } from 'src/entities/Plane-seat.entity';
 import { Plane } from 'src/entities/Plane.entity';
 import { PlaneCounterController } from './plane-counter.controller';
 import { PlaneCounterService } from './plane-counter.service';
@@ -11,7 +12,7 @@ import { PlaneCounterService } from './plane-counter.service';
   controllers: [PlaneCounterController],
   providers: [PlaneCounterService, AirlinesCounterService],
   imports: [
-    TypeOrmModule.forFeature([Plane, Airline]),
+    TypeOrmModule.forFeature([Plane, Airline, PlaneSeat]),
     forwardRef(() => AirlinesCounterModule),
   ],
   exports: [PlaneCounterService],
