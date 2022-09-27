@@ -23,7 +23,7 @@ export class PlaneCounterService {
     private airlineService: AirlinesCounterService,
   ) {}
 
-  async add(body: NewPlaneDto) {
+  async add(body: NewPlaneDto): Promise<Plane> {
     const queryRunner = await this.initiateQueryRunnerTransaction(body);
 
     try {
@@ -109,4 +109,7 @@ function getSeatType(type: string): SeatType {
   } else {
     throw new UnprocessableEntityException('SeatType is not a valid type.');
   }
+}
+function TransactionRepository() {
+  throw new Error('Function not implemented.');
 }
