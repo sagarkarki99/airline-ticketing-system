@@ -22,6 +22,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQ
 ### Get all planes
 GET http://localhost:3000/planes/
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcm1hbEBnbWFpbC5jb20iLCJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY0MjcwOTkzLCJleHAiOjE2NjQyNzQ1OTN9.8GXf-1Xq6FIKWbBNWQPXVL2AVQq8QH78k1aicwdFf14
 
 
 

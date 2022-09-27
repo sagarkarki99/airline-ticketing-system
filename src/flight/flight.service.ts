@@ -4,14 +4,19 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { response } from 'express';
 import { Flight, FlightStatus } from 'src/entities/Flight.entity';
+import { PlaneSeat } from 'src/entities/Plane-seat.entity';
+import { Ticket } from 'src/entities/Ticket.entity';
 import { PlaneCounterService } from 'src/plane-counter/plane-counter.service';
-import { Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
+import { SeatResponseDto } from './dtos/seat-response.dto';
 import { UpdateFlightDto } from './dtos/update-flight.dto';
 
 @Injectable()
 export class FlightService {
   constructor(
+    private dataSource: DataSource,
     @InjectRepository(Flight) private readonly repo: Repository<Flight>,
     private readonly planeService: PlaneCounterService,
   ) {}
@@ -30,6 +35,27 @@ export class FlightService {
       status: FlightStatus.ready,
     });
     return this.repo.save(flight);
+  }
+
+  async getAvailableSeats(flightId: string, planeId: string) {
+    const seats = await this.dataSource
+      .getRepository(PlaneSeat)
+      .findBy({ planeId });
+    const tickets = await this.dataSource
+      .getRepository(Ticket)
+      .findBy({ flightId });
+
+    const newSeats = seats.map((seat) => {
+      const responseDto = new SeatResponseDto();
+      responseDto.id = seat.id;
+      responseDto.seatNo = seat.seatNo;
+      responseDto.isBooked = tickets.some(
+        (ticket) => ticket.flightId === flightId,
+      );
+      return responseDto;
+    });
+
+    return newSeats;
   }
 
   getFlights(planeId?: string, date?: number) {

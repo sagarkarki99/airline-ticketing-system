@@ -34,6 +34,14 @@ export class FlightController {
     return this.flightService.getFlights(planeId, parseInt(date));
   }
 
+  @Get('/availableSeats')
+  getFlightSeats(
+    @Query('flightId') flightId: string,
+    @Query('planeId') planeId: string,
+  ) {
+    return this.flightService.getAvailableSeats(flightId, planeId);
+  }
+
   @Patch('/:id')
   updateFlight(
     @Body() body: UpdateFlightDto,
