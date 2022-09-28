@@ -10,7 +10,7 @@ import { AirlinesCounterService } from 'src/airlines-counter/airlines-counter.se
 import { PlaneSeat, SeatType } from 'src/entities/Plane-seat.entity';
 import { Plane } from 'src/entities/Plane.entity';
 import { DataSource, QueryRunner, Repository } from 'typeorm';
-import SeatDto, { NewPlaneDto } from './dtos/new-plane.dto';
+import { NewPlaneDto, SeatDto } from './dtos/new-plane.dto';
 import { PlaneResponseDto } from './dtos/plane-detail-response.dto';
 
 @Injectable()
