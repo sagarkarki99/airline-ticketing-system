@@ -33,15 +33,3 @@ export class SeatDto {
   })
   type: SeatType;
 }
-
-function getSeatType(type: string): SeatType {
-  if (type === 'business') {
-    return SeatType.business;
-  } else if (type === 'economy') {
-    return SeatType.economy;
-  } else if (type === 'firstclass') {
-    return SeatType.firstclass;
-  } else {
-    throw new UnprocessableEntityException('SeatType is not a valid type.');
-  }
-}
