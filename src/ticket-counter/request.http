@@ -1,10 +1,10 @@
 POST http://localhost:3000/ticket-counter/create
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcm1hbEBleGFtcGxlLmNvbSIsImlkIjozLCJyb2xlIjoibm9ybWFsIiwiaWF0IjoxNjYyNjM1ODM3LCJleHAiOjE2NjI2Mzk0Mzd9.eCVD2H_pYerVZmSl-7A3I8I2LEvwrFvIcowB2daxq-8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcm1hbDFAZ21haWwuY29tIiwiaWQiOjMsInJvbGUiOiJub3JtYWwiLCJpYXQiOjE2NjU0MDIwNTIsImV4cCI6MTY2NTQwNTY1Mn0.q6aiFmIQa0mjfyoSuNG_wJu9zj00fsMEdQJ5QovAOVE
 
 {
-    "seatNo":"13",
-    "flightId":"483a3934-454a-4503-97b3-39b6c3658c6e"
+    "seatNo":"we",
+    "flightId":"4ccaf2a0-82f5-406e-9993-643d9e8a567b"
 }
 
 
@@ -12,7 +12,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcm1hb
 ### Get all ticket
 GET http://localhost:3000/ticket-counter/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjo1LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjI2MzY3ODgsImV4cCI6MTY2MjY0MDM4OH0.Sb1T3vcRNb9JrBBj0AAo48P-X4jpy-ARV12Sm-XYD5U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcm1hbEBnbWFpbC5jb20iLCJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY1NDAxNjQ3LCJleHAiOjE2NjU0MDUyNDd9.9CFSFPzH0NaguDsrNn1bTn3E2kSjQZJKlIJ7awU54fI
 
 
 
