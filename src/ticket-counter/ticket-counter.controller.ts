@@ -7,7 +7,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Roles, User } from 'src/auth/decorators/user.decorators';
 import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
 import { RoleGuard } from 'src/auth/guard/role.guard';
@@ -15,6 +15,7 @@ import { User as _user, UserRole } from 'src/entities/User.entity';
 import { NewTicketDto } from './dtos/new-ticket.dto';
 import { TicketCounterService } from './ticket-counter.service';
 
+@ApiBearerAuth('Authorization')
 @Controller('ticket-counter')
 @UseGuards(JwtAuthGuard, RoleGuard)
 @ApiTags('Ticket-Resourses')

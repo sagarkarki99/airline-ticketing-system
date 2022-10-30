@@ -8,7 +8,7 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Admin } from 'src/auth/decorators/user.decorators';
 import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
 import { RoleGuard } from 'src/auth/guard/role.guard';
@@ -17,6 +17,7 @@ import { NewFlightDto } from './dtos/new-flight.dto';
 import { UpdateFlightDto } from './dtos/update-flight.dto';
 import { FlightService } from './flight.service';
 
+@ApiBearerAuth('Authorization')
 @UseGuards(JwtAuthGuard, RoleGuard)
 @Controller('flights')
 @ApiTags('Flights-Resources')
@@ -29,11 +30,12 @@ export class FlightController {
   }
 
   @Get('/')
-  getFlights(@Query('planeId') planeId: string, @Query('date') date: string) {
+  getFlights(@Query('planeId') planeId?: string, @Query('date') date?: string) {
     console.log(`PlaneId: ${planeId}, date: ${date}`);
     return this.flightService.getFlights(planeId, parseInt(date));
   }
 
+  @ApiBearerAuth('Authorization')
   @Get('/availableSeats')
   getFlightSeats(
     @Query('flightId') flightId: string,

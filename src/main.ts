@@ -9,6 +9,14 @@ async function bootstrap() {
     .setTitle('Airline System')
     .setDescription('The Airline system API description')
     .setVersion('1.0')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+      'Authorization',
+    )
     .addTag('Airline System')
     .build();
   const document = await SwaggerModule.createDocument(app, config);
