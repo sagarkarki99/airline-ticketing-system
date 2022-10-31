@@ -8,7 +8,7 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { Admin } from 'src/auth/decorators/user.decorators';
 import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
 import { RoleGuard } from 'src/auth/guard/role.guard';
@@ -30,6 +30,8 @@ export class FlightController {
   }
 
   @Get('/')
+  @ApiQuery({ required: false, name: 'date', type: Number })
+  @ApiQuery({ required: false, name: 'planeId', type: String })
   getFlights(@Query('planeId') planeId?: string, @Query('date') date?: string) {
     console.log(`PlaneId: ${planeId}, date: ${date}`);
     return this.flightService.getFlights(planeId, parseInt(date));

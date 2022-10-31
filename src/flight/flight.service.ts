@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   Injectable,
+  Logger,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -63,7 +64,7 @@ export class FlightService {
 
     if (date) {
       dateTime = new Date(date);
-      console.log(`date is ${date} and Date: ${dateTime}`);
+      Logger.log(`date is ${date} and Date: ${dateTime}`);
     }
     return this.repo.find({
       where: {
