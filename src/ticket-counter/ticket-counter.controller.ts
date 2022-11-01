@@ -25,7 +25,7 @@ export class TicketCounterController {
   @Post('/create')
   @Roles(UserRole.normal)
   createNewTicket(@Body() body: NewTicketDto, @User() user: _user) {
-    return this.ticketService.create(`${user.id}`, body.flightId, body.seatNo);
+    return this.ticketService.create(`${user._id}`, body.flightId, body.seatNo);
   }
 
   @Get('')
