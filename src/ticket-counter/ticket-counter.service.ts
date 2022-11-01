@@ -21,7 +21,7 @@ export class TicketCounterService {
     if (user.role === UserRole.admin) {
       return this.repo.find();
     }
-    return this.repo.findBy({ userId: `${user.id}` });
+    return this.repo.findBy({ userId: `${user._id}` });
   }
 
   async create(userId: string, flightId: string, seatId: string) {

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User, UserRole } from 'src/entities/User.entity';
@@ -11,6 +11,7 @@ export class UsersService {
 
   async getUser(email: string): Promise<User> {
     const user = await this.repo.findOneByEmail(email);
+    Logger.log(`Id: ${user._id}`, 'UsersService');
     return user;
   }
 
