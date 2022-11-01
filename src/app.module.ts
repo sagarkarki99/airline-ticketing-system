@@ -13,11 +13,13 @@ import { Ticket } from './entities/Ticket.entity';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { PlaneSeat } from './entities/Plane-seat.entity';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
     TicketCounterModule,
     AirlinesCounterModule,
+    MongooseModule.forRoot('mongoose://localhost/airline-db'),
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'airlines-db.sqlite',
