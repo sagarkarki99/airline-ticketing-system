@@ -11,9 +11,6 @@ export class UsersService {
 
   async getUser(email: string): Promise<User> {
     const user = await this.repo.findOneByEmail(email);
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
     return user;
   }
 
