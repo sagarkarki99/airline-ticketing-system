@@ -19,7 +19,7 @@ import { MongooseModule } from '@nestjs/mongoose';
   imports: [
     TicketCounterModule,
     AirlinesCounterModule,
-    MongooseModule.forRoot('mongoose://localhost/airline-db'),
+    MongooseModule.forRoot('mongodb://localhost/airline-db'),
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'airlines-db.sqlite',

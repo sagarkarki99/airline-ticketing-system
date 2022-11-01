@@ -2,7 +2,7 @@ POST  http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-    "email": "normal1@gmail.com",
+    "email": "mongodb@gmail.com",
     "password": "test@123",
     "userType":"normal"
 }
