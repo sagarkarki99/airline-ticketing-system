@@ -1,22 +1,25 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User, UserRole } from 'src/entities/User.entity';
 import { Repository } from 'typeorm';
+import { UsersRepository } from './users.repository';
 
 @Injectable()
 export class UsersService {
-  constructor(
-    @InjectRepository(User) private readonly repo: Repository<User>,
-  ) {}
+  constructor(private readonly repo: UsersRepository) {}
 
   async getUser(email: string): Promise<User> {
-    return this.repo.findOneBy({ email });
+    const user = await this.repo.findOneByEmail(email);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return user;
   }
 
   create(email: string, password: string, userType: string) {
     const role = this.getUserRole(userType);
-    const user = this.repo.create({ email, password, role });
-    return this.repo.save(user);
+    return this.repo.create(email, password, role);
   }
 
   private getUserRole(type?: string): UserRole {
