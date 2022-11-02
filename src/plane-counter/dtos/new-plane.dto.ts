@@ -1,7 +1,7 @@
 import { UnprocessableEntityException } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
-import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsObject, IsString, IsUUID } from 'class-validator';
 import { SeatType } from 'src/entities/Plane-seat.entity';
 
 export class NewPlaneDto {
@@ -10,7 +10,6 @@ export class NewPlaneDto {
   name: string;
 
   @IsString()
-  @IsUUID()
   @ApiProperty()
   airlineId: string;
 

@@ -39,24 +39,22 @@ export class FlightService {
   }
 
   async getAvailableSeats(flightId: string, planeId: string) {
-    const seats = await this.dataSource
-      .getRepository(PlaneSeat)
-      .findBy({ planeId });
-    const tickets = await this.dataSource
-      .getRepository(Ticket)
-      .findBy({ flightId });
-
-    const newSeats = seats.map((seat) => {
-      const responseDto = new SeatResponseDto();
-      responseDto.id = seat.id;
-      responseDto.seatNo = seat.seatNo;
-      responseDto.isBooked = tickets.some(
-        (ticket) => ticket.flightId === flightId,
-      );
-      return responseDto;
-    });
-
-    return newSeats;
+    // const seats = await this.dataSource
+    //   .getRepository(PlaneSeat)
+    //   .findBy({ plane:planeId });
+    // const tickets = await this.dataSource
+    //   .getRepository(Ticket)
+    //   .findBy({ flightId });
+    // const newSeats = seats.map((seat) => {
+    //   const responseDto = new SeatResponseDto();
+    //   responseDto.id = seat.id;
+    //   responseDto.seatNo = seat.seatNo;
+    //   responseDto.isBooked = tickets.some(
+    //     (ticket) => ticket.flightId === flightId,
+    //   );
+    //   return responseDto;
+    // });
+    // return newSeats;
   }
 
   getFlights(planeId?: string, date?: number) {

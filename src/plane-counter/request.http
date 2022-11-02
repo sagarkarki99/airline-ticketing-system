@@ -1,10 +1,10 @@
 POST http://localhost:3000/planes
 content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjQyMDc1NTIsImV4cCI6MTY2NDIxMTE1Mn0.vE9lA8xv2MZe6ajEequhkQr5--YV9uW3CkCbYV5wylU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoiNjM2MjNlNThmNmY1NzkyNGQ3MGViYTkxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3Mzk1MDY4LCJleHAiOjE2NjczOTg2Njh9.v5gnyzFF3eh_tyjQu3b2aFaYFaBCcjxRd2lypJgy2LU
 
 {
     "name": "Xpress 342",
-    "airlineId" : "34bbca8e-0b99-469e-8a95-b16b02df108a",
+    "airlineId" : "63623ef9c1690af184b8ff01",
     "seats": [
         {
             "seatNo": "A34",
@@ -22,7 +22,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQ
 ### Get all planes
 GET http://localhost:3000/planes/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcm1hbEBnbWFpbC5jb20iLCJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY0MjcwOTkzLCJleHAiOjE2NjQyNzQ1OTN9.8GXf-1Xq6FIKWbBNWQPXVL2AVQq8QH78k1aicwdFf14
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoiNjM2MjNlNThmNmY1NzkyNGQ3MGViYTkxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3Mzk1MDY4LCJleHAiOjE2NjczOTg2Njh9.v5gnyzFF3eh_tyjQu3b2aFaYFaBCcjxRd2lypJgy2LU
 
 
 
