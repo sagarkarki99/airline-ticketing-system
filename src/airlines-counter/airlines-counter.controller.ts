@@ -5,6 +5,7 @@ import {
   Param,
   Patch,
   Post,
+  UseFilters,
   UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
@@ -50,6 +51,8 @@ export class AirlinesCounterController {
   @Patch('/:id')
   @Roles(UserRole.admin)
   updateAirplane(@Param('id') id: string, @Body() body: UpdateAirlineDto) {
+    console.log(body.name);
+
     return this.airlinesCounterService.update(id, body);
   }
 }

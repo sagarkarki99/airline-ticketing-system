@@ -1,10 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import mongoose from 'mongoose';
 
-@Entity()
+@Schema()
 export class Airline {
-  @PrimaryGeneratedColumn('uuid')
+  @Prop({ _id: true })
   id: string;
 
-  @Column({ unique: true })
+  @Prop({ unique: true })
   name: string;
 }
+
+export const AirlineSchema = SchemaFactory.createForClass(Airline);
