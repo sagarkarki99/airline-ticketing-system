@@ -5,84 +5,66 @@ import {
   NotFoundException,
   UnprocessableEntityException,
 } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { AirlinesCounterService } from 'src/airlines-counter/airlines-counter.service';
 import { PlaneSeat, SeatType } from 'src/entities/Plane-seat.entity';
 import { Plane } from 'src/entities/Plane.entity';
-import { DataSource, QueryRunner, Repository } from 'typeorm';
 import { NewPlaneDto, SeatDto } from './dtos/new-plane.dto';
 import { PlaneResponseDto } from './dtos/plane-detail-response.dto';
+import { PlaneCounterRepository } from './plane-counter.repository';
+import { PlaneSeatRepository } from './plane-seat.repository';
 
 @Injectable()
 export class PlaneCounterService {
   constructor(
-    private dataSource: DataSource,
-    @InjectRepository(Plane) private readonly repo: Repository<Plane>,
+    private readonly repo: PlaneCounterRepository,
+    private readonly seatRepo: PlaneSeatRepository,
 
     @Inject(forwardRef(() => AirlinesCounterService))
     private airlineService: AirlinesCounterService,
   ) {}
 
   async add(body: NewPlaneDto): Promise<Plane> {
-    const queryRunner = await this.initiateQueryRunnerTransaction(body);
+    // const queryRunner = await this.initiateQueryRunnerTransaction(body);
 
-    try {
-      const plane = this.repo.create({
-        name: body.name.trim(),
-        airlineId: body.airlineId.trim(),
-      });
-      const savedPlane = await queryRunner.manager.save(plane);
-      await this.saveSeats(queryRunner, savedPlane.id, body.seats);
-      await queryRunner.commitTransaction();
-      return savedPlane;
-    } catch (error) {
-      await queryRunner.rollbackTransaction();
-      if (error instanceof UnprocessableEntityException) {
-        throw error;
-      }
-      throw new UnprocessableEntityException('Failed to add planes.');
-    } finally {
-      await queryRunner.release();
-    }
+    const plane = await this.repo.addNew(
+      body.airlineId.trim(),
+      body.name.trim(),
+    );
+
+    await this.saveSeats(plane.id, body.seats);
+    return plane;
   }
 
-  async initiateQueryRunnerTransaction(body: NewPlaneDto) {
-    const runner = await this.dataSource.createQueryRunner();
-    await runner.connect();
-    await runner.startTransaction();
-    return runner;
-  }
-
-  async saveSeats(queryRunner: QueryRunner, planeId: string, seats: SeatDto[]) {
+  async saveSeats(planeId: string, seats: SeatDto[]) {
     let seatEntities: Array<PlaneSeat> = [];
+    this.seatRepo.addAll(planeId, seats);
+    // for (let i = 0; i < seats.length; i++) {
+    //   const s = seats[i];
+    //   const entity = this.dataSource.getRepository(PlaneSeat).create({
+    //     seatType: getSeatType(s.type),
+    //     seatNo: s.seatNo,
+    //     planeId: planeId,
+    //   });
+    //   seatEntities.push(entity);
+    // }
 
-    for (let i = 0; i < seats.length; i++) {
-      const s = seats[i];
-      const entity = this.dataSource.getRepository(PlaneSeat).create({
-        seatType: getSeatType(s.type),
-        seatNo: s.seatNo,
-        planeId: planeId,
-      });
-      seatEntities.push(entity);
-    }
-
-    queryRunner.manager.insert(PlaneSeat, seatEntities);
+    // queryRunner.manager.insert(PlaneSeat, seatEntities);
   }
 
   getPlanesBy(airlineId: string | undefined) {
     if (airlineId === undefined) {
       return this.getAllPlanes();
     }
-    return this.repo.findBy({ airlineId });
+    return this.repo.findByAirlineId(airlineId);
   }
 
   async getPlaneById(pId: string): Promise<PlaneResponseDto> {
-    const plane = await this.repo.findOneBy({ id: pId });
+    const plane = await this.repo.findById(pId);
     if (!plane) {
       throw new NotFoundException('Plane not found');
     }
 
-    const airline = await this.airlineService.findById(plane.airlineId);
+    const airline = await this.airlineService.findById(plane.airline.id);
     const { id, name } = plane;
     const planeResponse = new PlaneResponseDto();
     planeResponse.id = id;
@@ -92,10 +74,10 @@ export class PlaneCounterService {
   }
 
   removePlane(planeId: string) {
-    return this.repo.delete({ id: planeId });
+    return this.repo.delete(planeId);
   }
   private getAllPlanes() {
-    return this.repo.find();
+    return this.repo.findAll();
   }
 }
 
@@ -113,3 +95,5 @@ function getSeatType(type: string): SeatType {
 function TransactionRepository() {
   throw new Error('Function not implemented.');
 }
+
+type Seat = {};

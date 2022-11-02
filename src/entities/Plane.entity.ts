@@ -1,13 +1,16 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import mongoose from 'mongoose';
+import { Airline } from './Airline.entity';
 
-@Entity()
+export type PlaneDocument = Plane & mongoose.Document;
+
+@Schema()
 export class Plane {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Airline' })
+  airline: Airline;
 
-  @Column()
-  airlineId: string;
-
-  @Column()
+  @Prop()
   name: string;
 }
+
+export const PlaneSchema = SchemaFactory.createForClass(Plane);
