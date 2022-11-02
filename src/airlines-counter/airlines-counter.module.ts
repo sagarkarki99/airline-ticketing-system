@@ -1,19 +1,26 @@
 import { forwardRef, Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Airline } from 'src/entities/Airline.entity';
+import { Airline, AirlineSchema } from 'src/entities/Airline.entity';
 import { Plane } from 'src/entities/Plane.entity';
 import { PlaneCounterModule } from 'src/plane-counter/plane-counter.module';
 import { PlaneCounterService } from 'src/plane-counter/plane-counter.service';
+import { AirlineCounterRepository } from './airline-counter.repository';
 import { AirlinesCounterController } from './airlines-counter.controller';
 import { AirlinesCounterService } from './airlines-counter.service';
 
 @Module({
+  providers: [
+    AirlinesCounterService,
+    PlaneCounterService,
+    AirlineCounterRepository,
+  ],
   imports: [
-    TypeOrmModule.forFeature([Airline, Plane]),
     forwardRef(() => PlaneCounterModule),
+    TypeOrmModule.forFeature([Airline, Plane]),
+    MongooseModule.forFeature([{ name: Airline.name, schema: AirlineSchema }]),
   ],
   controllers: [AirlinesCounterController],
-  providers: [AirlinesCounterService, PlaneCounterService],
-  exports: [AirlinesCounterService],
+  exports: [AirlinesCounterService, AirlineCounterRepository],
 })
 export class AirlinesCounterModule {}

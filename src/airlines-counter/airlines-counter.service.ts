@@ -9,37 +9,26 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Airline } from 'src/entities/Airline.entity';
 import { PlaneCounterService } from 'src/plane-counter/plane-counter.service';
 import { QueryFailedError, Repository } from 'typeorm';
+import { AirlineCounterRepository } from './airline-counter.repository';
 import { AirlineDetailDto } from './dtos/airline-detail-response.dto';
 
 @Injectable()
 export class AirlinesCounterService {
   constructor(
-    @InjectRepository(Airline)
-    private airlinesRepository: Repository<Airline>,
+    private airlinesRepository: AirlineCounterRepository,
     @Inject(forwardRef(() => PlaneCounterService))
     private planeService: PlaneCounterService,
   ) {}
 
   async addNew(name: string) {
-    try {
-      const airline = this.airlinesRepository.create({
-        name,
-      });
-      console.log(airline.name);
+    const airline = await this.airlinesRepository.add(name);
+    console.log(airline.name);
 
-      const value = await this.airlinesRepository.save(airline);
-      console.log(`This is value : ${value}`);
-      return value;
-    } catch (error) {
-      if (error instanceof QueryFailedError) {
-        throw new HttpException('Airline name already exist', 422);
-      }
-      console.log(`This is error in catch block : ${error}`);
-    }
+    return airline;
   }
 
   async getAirlineDetail(aId: string): Promise<AirlineDetailDto> {
-    const airline = await this.airlinesRepository.findOneBy({ id: aId });
+    const airline = await this.airlinesRepository.findById(aId);
     if (!airline) {
       throw new NotFoundException('Airline not found.', 'NOT_FOUND');
     }
@@ -57,20 +46,25 @@ export class AirlinesCounterService {
   }
 
   findById(id: string) {
-    return this.airlinesRepository.findOneBy({ id });
+    return this.airlinesRepository.findById(id);
   }
 
   findByName(name: string) {
-    return this.airlinesRepository.findOneBy({ name });
+    return this.airlinesRepository.findByName(name);
   }
   getAllAirlines() {
-    return this.airlinesRepository.find();
+    return this.airlinesRepository.getAllAirlines();
   }
 
   async update(id: string, attr: Partial<Airline>) {
-    const airline = await this.airlinesRepository.findOneBy({ id });
-    Object.assign(airline, attr);
+    console.log(`Before: ${attr.name}`);
 
-    return this.airlinesRepository.save(airline);
+    const airline = await this.airlinesRepository.findById(id);
+    Object.assign(airline, attr);
+    console.log(`After: ${airline.name}`);
+
+    return this.airlinesRepository.update(id, airline);
+
+    // return this.airlinesRepository.save(airline);
   }
 }

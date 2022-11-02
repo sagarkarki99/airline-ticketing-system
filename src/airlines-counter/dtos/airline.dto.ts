@@ -8,6 +8,7 @@ export class NewAirlineDto {
 }
 
 export class UpdateAirlineDto {
+  @IsString()
   @ApiProperty({ type: String })
   name: string;
 }

@@ -1,27 +1,28 @@
 POST http://localhost:3000/airlines
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjQwMTI0MTksImV4cCI6MTY2NDAxNjAxOX0.7GW50JK1hj3bIg5fimbWaZNVV837Sin2gWd05NyllGY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoiNjM2MjNlNThmNmY1NzkyNGQ3MGViYTkxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3MzgyOTkwLCJleHAiOjE2NjczODY1OTB9.UBvsg1Gaqzp8ktcx_RVE-bFJnEzq67nS4JoxlLVNr8A
 
 {
-    "name": "American Airlines"
+    "name": "Nepal Airlines"
 }
 
 
 ### Get all airlines
 GET http://localhost:3000/airlines/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjQwMTI0MTksImV4cCI6MTY2NDAxNjAxOX0.7GW50JK1hj3bIg5fimbWaZNVV837Sin2gWd05NyllGY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoiNjM2MjNlNThmNmY1NzkyNGQ3MGViYTkxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3MzgyOTkwLCJleHAiOjE2NjczODY1OTB9.UBvsg1Gaqzp8ktcx_RVE-bFJnEzq67nS4JoxlLVNr8A
 
 
 ### Get airline details
-GET http://localhost:3000/airlines/20f1691a-a030-4b06-98e5-262417fb0e6d
+GET http://localhost:3000/airlines/63623ef9c1690af184b8ff01
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjQwMTI0MTksImV4cCI6MTY2NDAxNjAxOX0.7GW50JK1hj3bIg5fimbWaZNVV837Sin2gWd05NyllGY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoiNjM2MjNlNThmNmY1NzkyNGQ3MGViYTkxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3MzgyOTkwLCJleHAiOjE2NjczODY1OTB9.UBvsg1Gaqzp8ktcx_RVE-bFJnEzq67nS4JoxlLVNr8A
 
 ### update airlines
-PATCH http://localhost:3000/airlines/1
+PATCH http://localhost:3000/airlines/63623ef9c1690af184b8ff01
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoiNjM2MjNlNThmNmY1NzkyNGQ3MGViYTkxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3MzgyOTkwLCJleHAiOjE2NjczODY1OTB9.UBvsg1Gaqzp8ktcx_RVE-bFJnEzq67nS4JoxlLVNr8A
 
 {
-    "name": "American airlines"
+    "name": "American power 2 airlines"
 }
