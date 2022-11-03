@@ -1,19 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
-@Entity()
-export class Flight {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
-  @Column()
-  planeId: string;
-
-  @Column()
-  departureDate: number;
-
-  @Column()
-  status: string;
-}
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import mongoose from 'mongoose';
 
 export enum FlightStatus {
   inAir = 'inAir',
@@ -21,3 +7,19 @@ export enum FlightStatus {
   completed = 'completed',
   ready = 'ready',
 }
+
+export type FlightDocument = Flight & mongoose.Document;
+
+@Schema()
+export class Flight {
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Plane' })
+  planeId: string;
+
+  @Prop()
+  departureDate: Date;
+
+  @Prop({ type: String, enum: FlightStatus, default: FlightStatus.ready })
+  status: FlightStatus;
+}
+
+export const FlightSchema = SchemaFactory.createForClass(Flight);

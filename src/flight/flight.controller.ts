@@ -38,12 +38,12 @@ export class FlightController {
   }
 
   @ApiBearerAuth('Authorization')
-  @Get('/availableSeats')
+  @Get('/seats')
   getFlightSeats(
     @Query('flightId') flightId: string,
     @Query('planeId') planeId: string,
   ) {
-    return this.flightService.getAvailableSeats(flightId, planeId);
+    return this.flightService.getSeats(flightId, planeId);
   }
 
   @Patch('/:id')
