@@ -31,21 +31,11 @@ export class PlaneCounterController {
 
   @Get('/')
   getPlanesBy(@Query('airlineId') airlineId?: string) {
-    if (this.isValidId(airlineId)) {
-      throw new BadRequestException('Id is not valid');
-    }
     return this.service.getPlanesBy(airlineId);
   }
 
   @Get('/:id')
   async getPlaneDetail(@Param('id') id: string) {
-    if (this.isValidId(id)) {
-      throw new BadRequestException('Id is not valid');
-    }
     return this.service.getPlaneById(id);
-  }
-
-  private isValidId(id?: string) {
-    return id && !isUUID(id);
   }
 }

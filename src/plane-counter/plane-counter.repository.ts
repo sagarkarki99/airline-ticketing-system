@@ -1,32 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { BaseRepository } from 'src/core/database/base.repository';
 import { Plane, PlaneDocument } from 'src/entities/Plane.entity';
 
 @Injectable()
-export class PlaneCounterRepository {
+export class PlaneCounterRepository extends BaseRepository<Plane> {
   constructor(
     @InjectModel(Plane.name) private readonly planeModel: Model<Plane>,
-  ) {}
+  ) {
+    super(planeModel);
+  }
 
   async addNew(airlineId: String, name: string): Promise<PlaneDocument> {
     const planeModel = new this.planeModel({ airline: airlineId, name });
-    return planeModel.save();
+    return this.save(planeModel);
   }
 
   async findByAirlineId(airlineId: string): Promise<Plane[]> {
-    return this.planeModel.find({ airline: airlineId });
-  }
-
-  async findById(id: string): Promise<PlaneDocument> {
-    return this.planeModel.findById(id);
-  }
-
-  async delete(id: string) {
-    return this.planeModel.findByIdAndRemove(id);
+    return this.find({ airline: airlineId });
   }
 
   async findAll() {
-    return this.planeModel.find();
+    return this.find();
   }
 }
