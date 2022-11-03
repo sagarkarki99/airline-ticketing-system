@@ -1,9 +1,9 @@
 POST http://localhost:3000/planes
 content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoiNjM2MjNlNThmNmY1NzkyNGQ3MGViYTkxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3Mzk1MDY4LCJleHAiOjE2NjczOTg2Njh9.v5gnyzFF3eh_tyjQu3b2aFaYFaBCcjxRd2lypJgy2LU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoiNjM2MjNlNThmNmY1NzkyNGQ3MGViYTkxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3NDYyNzAxLCJleHAiOjE2Njc0NjYzMDF9.n0heXpwqADqG89wu47kAx5KWwjYWWqEMMIbMpxBG4TM
 
 {
-    "name": "Xpress 342",
+    "name": "endpress 342",
     "airlineId" : "63623ef9c1690af184b8ff01",
     "seats": [
         {
@@ -22,19 +22,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQ
 ### Get all planes
 GET http://localhost:3000/planes/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoiNjM2MjNlNThmNmY1NzkyNGQ3MGViYTkxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3Mzk1MDY4LCJleHAiOjE2NjczOTg2Njh9.v5gnyzFF3eh_tyjQu3b2aFaYFaBCcjxRd2lypJgy2LU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoiNjM2MjNlNThmNmY1NzkyNGQ3MGViYTkxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3NDYyNzAxLCJleHAiOjE2Njc0NjYzMDF9.n0heXpwqADqG89wu47kAx5KWwjYWWqEMMIbMpxBG4TM
 
 
 
 ### Get all planes by airlineId
-GET http://localhost:3000/planes?airlineId=
+GET http://localhost:3000/planes?airlineId=63623ef9c1690af184b8ff01
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoiNjM2MjNlNThmNmY1NzkyNGQ3MGViYTkxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3NDYyNzAxLCJleHAiOjE2Njc0NjYzMDF9.n0heXpwqADqG89wu47kAx5KWwjYWWqEMMIbMpxBG4TM
 
 
 
 ### Get plane by planeId
-GET http://localhost:3000/planes/11daf697-a483-48b6-8742-31490b96ba38
+GET http://localhost:3000/planes/63637917bb03b56ebfeeafa9
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoiNjM2MjNlNThmNmY1NzkyNGQ3MGViYTkxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3NDYyNzAxLCJleHAiOjE2Njc0NjYzMDF9.n0heXpwqADqG89wu47kAx5KWwjYWWqEMMIbMpxBG4TM
 
 
 ### update planes

@@ -36,7 +36,6 @@ export class PlaneCounterService {
   }
 
   async saveSeats(planeId: string, seats: SeatDto[]) {
-    let seatEntities: Array<PlaneSeat> = [];
     this.seatRepo.addAll(planeId, seats);
     // for (let i = 0; i < seats.length; i++) {
     //   const s = seats[i];
@@ -63,8 +62,11 @@ export class PlaneCounterService {
     if (!plane) {
       throw new NotFoundException('Plane not found');
     }
+    console.log(`${plane.airline}`);
 
-    const airline = await this.airlineService.findById(plane.airline.id);
+    const airline = await this.airlineService.findById(
+      plane.airline as unknown as string,
+    );
     const { id, name } = plane;
     const planeResponse = new PlaneResponseDto();
     planeResponse.id = id;
