@@ -1,29 +1,29 @@
 POST  http://localhost:3000/flights
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcm1hbEBnbWFpbC5jb20iLCJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY0MjcwOTkzLCJleHAiOjE2NjQyNzQ1OTN9.8GXf-1Xq6FIKWbBNWQPXVL2AVQq8QH78k1aicwdFf14
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoiNjM2MjNlNThmNmY1NzkyNGQ3MGViYTkxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3NDk0NjY3LCJleHAiOjE2Njc0OTgyNjd9.keDXRijBF-vw766DY_ksZ-wDIbd1rFpimH3p1vfE2oA
 
 {
     "date":666661,
-    "planeId" : "803a0d6f-2a13-480f-84f3-ae10eef5ac7f"
+    "planeId" : "63637917bb03b56ebfeeafa9"
 }
 
 
 ### Get all available flights
 Get http://localhost:3000/flights
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcm1hbEBnbWFpbC5jb20iLCJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3MTQ0MzA1LCJleHAiOjE2NjcxNDc5MDV9.1oszXP3N7wrkHtgFveo4okbJkpzR1tpCGGbyaUxWhTM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoiNjM2MjNlNThmNmY1NzkyNGQ3MGViYTkxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3NDk0NjY3LCJleHAiOjE2Njc0OTgyNjd9.keDXRijBF-vw766DY_ksZ-wDIbd1rFpimH3p1vfE2oA
 
 
 ### Get all available seats for that flight
-Get http://localhost:3000/flights/availableSeats?flightId=4ccaf2a0-82f5-406e-9993-643d9e8a567b&planeId=d3e13324-0686-497a-958c-30401da633c2	
+Get http://localhost:3000/flights/seats?flightId=6363f372b695e8d999d7dbb1&planeId=63637917bb03b56ebfeeafa9	
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcm1hbEBnbWFpbC5jb20iLCJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3MTQ0OTczLCJleHAiOjE2NjcxNDg1NzN9.Oh4ow9wbKLQeAymJV9-iPNG8OyQzxlWEiaOnKIfTWuk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoiNjM2MjNlNThmNmY1NzkyNGQ3MGViYTkxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3NDk0NjY3LCJleHAiOjE2Njc0OTgyNjd9.keDXRijBF-vw766DY_ksZ-wDIbd1rFpimH3p1vfE2oA
 
 
 ### Update flight status
-Patch http://localhost:3000/flights/4ccaf2a0-82f5-406e-9993-643d9e8a567b
+Patch http://localhost:3000/flights/6363f372b695e8d99d9d7dbb1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NjQzNzA2NDIsImV4cCI6MTY2NDM3NDI0Mn0.YuYfVqpIkgnjLCJtCnB8QhzzFPWtubCRSI4qt7aXBP4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoiNjM2MjNlNThmNmY1NzkyNGQ3MGViYTkxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3NDk0NjY3LCJleHAiOjE2Njc0OTgyNjd9.keDXRijBF-vw766DY_ksZ-wDIbd1rFpimH3p1vfE2oA
 
 {
     "status": "inAir"

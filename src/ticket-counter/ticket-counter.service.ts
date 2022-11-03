@@ -1,10 +1,12 @@
 import {
+  forwardRef,
+  Inject,
   Injectable,
   NotFoundException,
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Flight } from 'src/entities/Flight.entity';
+import { Flight, FlightDocument } from 'src/entities/Flight.entity';
 import { Ticket, TicketStatus } from 'src/entities/Ticket.entity';
 import { User, UserRole } from 'src/entities/User.entity';
 import { FlightService } from 'src/flight/flight.service';
@@ -13,6 +15,7 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class TicketCounterService {
   constructor(
+    @Inject(forwardRef(() => FlightService))
     private readonly flightService: FlightService,
     @InjectRepository(Ticket) private readonly repo: Repository<Ticket>,
   ) {}
@@ -22,6 +25,10 @@ export class TicketCounterService {
       return this.repo.find();
     }
     return this.repo.findBy({ userId: `${user._id}` });
+  }
+
+  async getTicketFor(flightId: string) {
+    return this.repo.findBy({ flightId: flightId });
   }
 
   async create(userId: string, flightId: string, seatId: string) {
@@ -64,7 +71,11 @@ export class TicketCounterService {
     return false;
   }
 
-  private async saveTicket(seatId: string, userId: string, flight: Flight) {
+  private async saveTicket(
+    seatId: string,
+    userId: string,
+    flight: FlightDocument,
+  ) {
     const ticket = this.repo.create({
       seatId,
       userId,

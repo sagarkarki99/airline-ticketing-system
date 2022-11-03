@@ -7,7 +7,6 @@ export class NewFlightDto {
   date: number;
 
   @IsString()
-  @IsUUID()
   @ApiProperty({ type: String })
   planeId: string;
 }
