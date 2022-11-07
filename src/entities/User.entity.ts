@@ -6,7 +6,7 @@ export enum UserRole {
   normal = 'normal',
 }
 
-export type UserDocument = User & Document;
+export type UserDocument = User & mongoose.Document;
 @Schema()
 export class User {
   _id: mongoose.Schema.Types.ObjectId;

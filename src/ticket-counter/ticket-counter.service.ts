@@ -11,24 +11,25 @@ import { Ticket, TicketStatus } from 'src/entities/Ticket.entity';
 import { User, UserRole } from 'src/entities/User.entity';
 import { FlightService } from 'src/flight/flight.service';
 import { Repository } from 'typeorm';
+import { TicketCounterRepository } from './ticket-counter.repository';
 
 @Injectable()
 export class TicketCounterService {
   constructor(
     @Inject(forwardRef(() => FlightService))
     private readonly flightService: FlightService,
-    @InjectRepository(Ticket) private readonly repo: Repository<Ticket>,
+    private readonly repo: TicketCounterRepository,
   ) {}
 
   getTickets(user: User) {
     if (user.role === UserRole.admin) {
       return this.repo.find();
     }
-    return this.repo.findBy({ userId: `${user._id}` });
+    return this.repo.findByUser(user._id);
   }
 
   async getTicketFor(flightId: string) {
-    return this.repo.findBy({ flightId: flightId });
+    return this.repo.fingByFlight(flightId);
   }
 
   async create(userId: string, flightId: string, seatId: string) {
@@ -42,7 +43,7 @@ export class TicketCounterService {
       );
     }
 
-    const value = await this.saveTicket(seatId, userId, flight);
+    const value = await this.repo.saveTicket(seatId, userId, flight);
     console.log('Ticket saved successfully');
     return value;
   }
@@ -69,22 +70,6 @@ export class TicketCounterService {
       return true;
     }
     return false;
-  }
-
-  private async saveTicket(
-    seatId: string,
-    userId: string,
-    flight: FlightDocument,
-  ) {
-    const ticket = this.repo.create({
-      seatId,
-      userId,
-      flightId: flight.id,
-      createdOn: new Date().getDate(),
-      status: TicketStatus.booked,
-    });
-    const value = await this.repo.save(ticket);
-    return value;
   }
 
   private async getFlightFor(flightId: string) {

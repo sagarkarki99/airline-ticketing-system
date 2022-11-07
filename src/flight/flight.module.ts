@@ -15,13 +15,7 @@ import { FlightService } from './flight.service';
 
 @Module({
   controllers: [FlightController],
-  providers: [
-    FlightService,
-    FlightRepository,
-    TicketCounterService,
-    PlaneCounterService,
-    AirlinesCounterService,
-  ],
+  providers: [FlightService, FlightRepository],
   imports: [
     MongooseModule.forFeature([{ name: Flight.name, schema: FlightSchema }]),
     TypeOrmModule.forFeature([Flight, Ticket]),
