@@ -11,7 +11,6 @@ export class UsersService {
 
   async getUser(email: string): Promise<User> {
     const user = await this.repo.findOneByEmail(email);
-    Logger.log(`Id: ${user._id}`, 'UsersService');
     return user;
   }
 

@@ -10,11 +10,7 @@ import { AirlinesCounterController } from './airlines-counter.controller';
 import { AirlinesCounterService } from './airlines-counter.service';
 
 @Module({
-  providers: [
-    AirlinesCounterService,
-    PlaneCounterService,
-    AirlineCounterRepository,
-  ],
+  providers: [AirlinesCounterService, AirlineCounterRepository],
   imports: [
     forwardRef(() => PlaneCounterModule),
     TypeOrmModule.forFeature([Airline, Plane]),

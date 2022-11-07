@@ -6,7 +6,6 @@ export class NewTicketDto {
   @ApiProperty({ type: String })
   seatNo: string;
 
-  @IsUUID()
   @IsString()
   @ApiProperty({ type: String })
   flightId: string;
