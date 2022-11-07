@@ -48,8 +48,8 @@ export class TicketCounterService {
     return value;
   }
 
-  async cancelTicketFor(ticketNo: number) {
-    const ticket = await this.repo.findOneBy({ ticketNo });
+  async cancelTicketFor(ticketId: string) {
+    const ticket = await this.repo.findById(ticketId);
     if (!ticket) {
       throw new NotFoundException('Ticket not found');
     }
@@ -57,7 +57,7 @@ export class TicketCounterService {
       status: TicketStatus.cancelled,
     });
 
-    return this.repo.save(ticket);
+    return this.repo.update(ticketId, ticket);
   }
 
   async isTicketAlreadyBooked(

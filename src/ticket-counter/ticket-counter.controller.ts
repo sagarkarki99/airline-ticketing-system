@@ -37,6 +37,6 @@ export class TicketCounterController {
   @Delete('/:ticketNumber')
   @Roles(UserRole.normal)
   cancelTicket(@Param('ticketNumber') ticketNo: string) {
-    return this.ticketService.cancelTicketFor(parseInt(ticketNo));
+    return this.ticketService.cancelTicketFor(ticketNo);
   }
 }
