@@ -5,12 +5,9 @@ import {
   NotFoundException,
   UnprocessableEntityException,
 } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Flight, FlightDocument } from 'src/entities/Flight.entity';
-import { Ticket, TicketStatus } from 'src/entities/Ticket.entity';
+import { TicketStatus } from 'src/entities/Ticket.entity';
 import { User, UserRole } from 'src/entities/User.entity';
 import { FlightService } from 'src/flight/flight.service';
-import { Repository } from 'typeorm';
 import { TicketCounterRepository } from './ticket-counter.repository';
 
 @Injectable()

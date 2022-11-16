@@ -1,9 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { randomBytes, scrypt as _scrypt } from 'crypto';
 import { User, UserRole } from 'src/entities/User.entity';
 import { UsersService } from 'src/users/users.service';
-import { Repository } from 'typeorm';
 import { promisify } from 'util';
 import { JwtService } from '@nestjs/jwt';
 

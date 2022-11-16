@@ -1,6 +1,5 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { AirlinesCounterModule } from 'src/airlines-counter/airlines-counter.module';
 import { AirlinesCounterService } from 'src/airlines-counter/airlines-counter.service';
 import { Airline } from 'src/entities/Airline.entity';
@@ -20,7 +19,6 @@ import { PlaneSeatRepository } from './plane-seat.repository';
     PlaneSeatRepository,
   ],
   imports: [
-    TypeOrmModule.forFeature([Plane, Airline, PlaneSeat]),
     MongooseModule.forFeature([
       { name: Plane.name, schema: PlaneSchema },
       { name: PlaneSeat.name, schema: PlaneSeatSchema },

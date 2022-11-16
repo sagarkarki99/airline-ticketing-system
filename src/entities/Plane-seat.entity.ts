@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { Plane } from './Plane.entity';
 
 export enum SeatType {
