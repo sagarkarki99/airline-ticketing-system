@@ -1,14 +1,11 @@
 import {
   forwardRef,
-  HttpException,
   Inject,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { Airline } from 'src/entities/Airline.entity';
 import { PlaneCounterService } from 'src/plane-counter/plane-counter.service';
-import { QueryFailedError, Repository } from 'typeorm';
 import { AirlineCounterRepository } from './airline-counter.repository';
 import { AirlineDetailDto } from './dtos/airline-detail-response.dto';
 

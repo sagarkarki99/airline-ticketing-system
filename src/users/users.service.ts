@@ -1,8 +1,5 @@
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable } from '@nestjs/common';
 import { User, UserRole } from 'src/entities/User.entity';
-import { Repository } from 'typeorm';
 import { UsersRepository } from './users.repository';
 
 @Injectable()

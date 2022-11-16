@@ -1,6 +1,5 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { AirlinesCounterModule } from 'src/airlines-counter/airlines-counter.module';
 import { AirlinesCounterService } from 'src/airlines-counter/airlines-counter.service';
 import { Flight, FlightSchema } from 'src/entities/Flight.entity';
@@ -22,7 +21,6 @@ import { TicketCounterService } from './ticket-counter.service';
       { name: Flight.name, schema: FlightSchema },
       { name: Ticket.name, schema: TicketSchema },
     ]),
-    TypeOrmModule.forFeature([Ticket]),
     forwardRef(() => FlightModule),
     PlaneCounterModule,
     AirlinesCounterModule,
