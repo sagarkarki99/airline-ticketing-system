@@ -65,7 +65,11 @@ export class TicketCounterService {
     flightId: string,
   ): Promise<boolean> {
     console.log('Validating seat no...');
-    const ticket = await this.repo.findOneBy({ seatId, flightId });
+    const ticket = await this.repo.findOneBy({
+      seatId,
+      flightId,
+      status: { $not: { $eq: TicketStatus.cancelled } },
+    });
     if (ticket) {
       return true;
     }
