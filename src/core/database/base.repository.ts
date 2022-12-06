@@ -1,11 +1,19 @@
+import { HttpException, Logger } from '@nestjs/common';
 import { FilterQuery, Model } from 'mongoose';
 
 export abstract class BaseRepository<T extends any> {
   constructor(private readonly model: Model<T>) {}
 
   async save(m: T) {
-    const createdModel = new this.model(m);
-    return createdModel.save();
+    try {
+      const createdModel = new this.model(m);
+      return await createdModel.save();
+    } catch (error) {
+      Logger.error(error.toString(), BaseRepository.name);
+      if (error.code === 11000) {
+        throw new HttpException('Plane already exist.', 409);
+      }
+    }
   }
 
   async findById(id: string) {

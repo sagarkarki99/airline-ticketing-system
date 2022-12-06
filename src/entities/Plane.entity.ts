@@ -9,7 +9,7 @@ export class Plane {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Airline' })
   airline: Airline;
 
-  @Prop()
+  @Prop({ unique: true })
   name: string;
 }
 

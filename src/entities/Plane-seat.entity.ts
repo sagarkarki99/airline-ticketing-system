@@ -9,7 +9,7 @@ export enum SeatType {
 }
 
 export type PlaneSeatDocument = PlaneSeat & mongoose.Document;
-@Schema()
+@Schema({ collection: 'planeSeats' })
 export class PlaneSeat {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Plane' })
   plane: Plane;

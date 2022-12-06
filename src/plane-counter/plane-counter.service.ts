@@ -8,16 +8,16 @@ import {
 import { AirlinesCounterService } from 'src/airlines-counter/airlines-counter.service';
 import { PlaneSeat, SeatType } from 'src/entities/Plane-seat.entity';
 import { Plane } from 'src/entities/Plane.entity';
+import { PlaneSeatService } from 'src/plane-seat/plane-seat.service';
 import { NewPlaneDto, SeatDto } from './dtos/new-plane.dto';
 import { PlaneResponseDto } from './dtos/plane-detail-response.dto';
 import { PlaneCounterRepository } from './plane-counter.repository';
-import { PlaneSeatRepository } from './plane-seat.repository';
 
 @Injectable()
 export class PlaneCounterService {
   constructor(
     private readonly repo: PlaneCounterRepository,
-    private readonly seatRepo: PlaneSeatRepository,
+    private readonly seatService: PlaneSeatService,
 
     @Inject(forwardRef(() => AirlinesCounterService))
     private airlineService: AirlinesCounterService,
@@ -36,7 +36,7 @@ export class PlaneCounterService {
   }
 
   async saveSeats(planeId: string, seats: SeatDto[]) {
-    this.seatRepo.addAll(planeId, seats);
+    this.seatService.addSeats(planeId, seats);
     // for (let i = 0; i < seats.length; i++) {
     //   const s = seats[i];
     //   const entity = this.dataSource.getRepository(PlaneSeat).create({

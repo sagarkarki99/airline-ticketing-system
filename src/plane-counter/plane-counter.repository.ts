@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Error, Model, MongooseError } from 'mongoose';
 import { BaseRepository } from 'src/core/database/base.repository';
 import { Plane, PlaneDocument } from 'src/entities/Plane.entity';
 

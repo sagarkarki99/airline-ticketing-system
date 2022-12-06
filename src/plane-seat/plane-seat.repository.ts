@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { PlaneSeat } from 'src/entities/Plane-seat.entity';
-import { SeatDto } from './dtos/new-plane.dto';
+import { SeatDto } from 'src/plane-counter/dtos/new-plane.dto';
 
 @Injectable()
 export class PlaneSeatRepository {

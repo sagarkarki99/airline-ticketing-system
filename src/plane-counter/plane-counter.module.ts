@@ -5,10 +5,10 @@ import { AirlinesCounterService } from 'src/airlines-counter/airlines-counter.se
 import { Airline } from 'src/entities/Airline.entity';
 import { PlaneSeat, PlaneSeatSchema } from 'src/entities/Plane-seat.entity';
 import { Plane, PlaneSchema } from 'src/entities/Plane.entity';
+import { PlaneSeatModule } from 'src/plane-seat/plane-seat.module';
 import { PlaneCounterController } from './plane-counter.controller';
 import { PlaneCounterRepository } from './plane-counter.repository';
 import { PlaneCounterService } from './plane-counter.service';
-import { PlaneSeatRepository } from './plane-seat.repository';
 
 @Module({
   controllers: [PlaneCounterController],
@@ -16,15 +16,12 @@ import { PlaneSeatRepository } from './plane-seat.repository';
     PlaneCounterService,
     AirlinesCounterService,
     PlaneCounterRepository,
-    PlaneSeatRepository,
   ],
   imports: [
-    MongooseModule.forFeature([
-      { name: Plane.name, schema: PlaneSchema },
-      { name: PlaneSeat.name, schema: PlaneSeatSchema },
-    ]),
+    MongooseModule.forFeature([{ name: Plane.name, schema: PlaneSchema }]),
     forwardRef(() => AirlinesCounterModule),
+    PlaneSeatModule,
   ],
-  exports: [PlaneCounterService, PlaneCounterRepository, PlaneSeatRepository],
+  exports: [PlaneCounterService, PlaneCounterRepository],
 })
 export class PlaneCounterModule {}
