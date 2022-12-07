@@ -5,6 +5,8 @@ import {
   NotFoundException,
   UnprocessableEntityException,
 } from '@nestjs/common';
+import { InjectConnection } from '@nestjs/mongoose';
+import { ClientSession, connection, Connection } from 'mongoose';
 import { AirlinesCounterService } from 'src/airlines-counter/airlines-counter.service';
 import { PlaneSeat, SeatType } from 'src/entities/Plane-seat.entity';
 import { Plane } from 'src/entities/Plane.entity';
@@ -21,33 +23,29 @@ export class PlaneCounterService {
 
     @Inject(forwardRef(() => AirlinesCounterService))
     private airlineService: AirlinesCounterService,
+
+    @InjectConnection() private connection: Connection,
   ) {}
 
   async add(body: NewPlaneDto): Promise<Plane> {
-    // const queryRunner = await this.initiateQueryRunnerTransaction(body);
-
+    const session = await this.connection.startSession();
+    await session.startTransaction();
     const plane = await this.repo.addNew(
       body.airlineId.trim(),
       body.name.trim(),
+      session,
     );
 
-    await this.saveSeats(plane.id, body.seats);
-    return plane;
-  }
-
-  async saveSeats(planeId: string, seats: SeatDto[]) {
-    this.seatService.addSeats(planeId, seats);
-    // for (let i = 0; i < seats.length; i++) {
-    //   const s = seats[i];
-    //   const entity = this.dataSource.getRepository(PlaneSeat).create({
-    //     seatType: getSeatType(s.type),
-    //     seatNo: s.seatNo,
-    //     planeId: planeId,
-    //   });
-    //   seatEntities.push(entity);
-    // }
-
-    // queryRunner.manager.insert(PlaneSeat, seatEntities);
+    try {
+      await this.seatService.addSeats(plane.id, body.seats, session);
+      await session.commitTransaction();
+      return plane;
+    } catch (error) {
+      await session.abortTransaction();
+      throw new UnprocessableEntityException('Failed to add planes.');
+    } finally {
+      await session.endSession();
+    }
   }
 
   getPlanesBy(airlineId: string | undefined) {

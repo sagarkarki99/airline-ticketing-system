@@ -1,13 +1,13 @@
 import { HttpException, Logger } from '@nestjs/common';
-import { FilterQuery, Model } from 'mongoose';
+import { ClientSession, FilterQuery, Model } from 'mongoose';
 
 export abstract class BaseRepository<T extends any> {
   constructor(private readonly model: Model<T>) {}
 
-  async save(m: T) {
+  async save(m: T, session?: ClientSession) {
     try {
       const createdModel = new this.model(m);
-      return await createdModel.save();
+      return await createdModel.save({ session: session });
     } catch (error) {
       Logger.error(error.toString(), BaseRepository.name);
       if (error.code === 11000) {

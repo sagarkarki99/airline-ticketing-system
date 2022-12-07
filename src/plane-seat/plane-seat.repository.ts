@@ -16,7 +16,11 @@ export class PlaneSeatRepository {
     return seatModel.save();
   }
 
-  async addAll(planeId: string, seats: SeatDto[]): Promise<PlaneSeat[]> {
+  async addAll(
+    planeId: string,
+    seats: SeatDto[],
+    session,
+  ): Promise<PlaneSeat[]> {
     const seatModels = seats.map(
       (seat) =>
         new this.planeSeatModel({
@@ -25,7 +29,9 @@ export class PlaneSeatRepository {
           type: seat.type,
         }),
     );
-    const savedSeats = this.planeSeatModel.insertMany(seatModels);
+    const savedSeats = this.planeSeatModel.insertMany(seatModels, {
+      session: session,
+    });
     return savedSeats;
   }
 }
