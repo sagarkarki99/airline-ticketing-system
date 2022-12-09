@@ -7,11 +7,11 @@ export abstract class BaseRepository<T extends any> {
   async save(m: T) {
     try {
       const createdModel = new this.model(m);
-      return await createdModel.save();
+      return await createdModel;
     } catch (error) {
       Logger.error(error.toString(), BaseRepository.name);
       if (error.code === 11000) {
-        throw new HttpException('Plane already exist.', 409);
+        throw new Error('DUBLICATE_VALUE');
       }
     }
   }
