@@ -13,6 +13,7 @@ import { Admin } from 'src/auth/decorators/user.decorators';
 import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
 import { RoleGuard } from 'src/auth/guard/role.guard';
 import { User } from 'src/entities/User.entity';
+import { FlightResponseDto } from './dtos/flight.response.dto';
 import { NewFlightDto } from './dtos/new-flight.dto';
 import { UpdateFlightDto } from './dtos/update-flight.dto';
 import { FlightService } from './flight.service';
@@ -25,8 +26,16 @@ export class FlightController {
   constructor(private readonly flightService: FlightService) {}
 
   @Post('/')
-  async addNew(@Body() body: NewFlightDto) {
-    return this.flightService.add(body.planeId, body.date);
+  async addNew(@Body() body: NewFlightDto): Promise<FlightResponseDto> {
+    const flight = await this.flightService.add(body);
+    return {
+      id: flight.id,
+      departureDate: flight.departureDate,
+      planeId: flight.planeId,
+      status: flight.status,
+      from: flight.from,
+      to: flight.to,
+    };
   }
 
   @Get('/')

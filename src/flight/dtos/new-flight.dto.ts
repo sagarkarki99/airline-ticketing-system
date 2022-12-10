@@ -9,4 +9,14 @@ export class NewFlightDto {
   @IsString()
   @ApiProperty({ type: String })
   planeId: string;
+
+  @IsString()
+  from: string;
+
+  @IsString()
+  to: string;
+
+  fullDate() {
+    return new Date(this.date);
+  }
 }

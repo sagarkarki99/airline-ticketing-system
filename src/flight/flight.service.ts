@@ -9,6 +9,7 @@ import {
 import mongoose from 'mongoose';
 import { PlaneCounterService } from 'src/plane-counter/plane-counter.service';
 import { TicketCounterService } from 'src/ticket-counter/ticket-counter.service';
+import { NewFlightDto } from './dtos/new-flight.dto';
 import { SeatResponseDto } from './dtos/seat-response.dto';
 import { UpdateFlightDto } from './dtos/update-flight.dto';
 import { FlightRepository } from './flight.repository';
@@ -22,15 +23,14 @@ export class FlightService {
     private readonly ticketService: TicketCounterService,
   ) {}
 
-  async add(planeId: string, date: number) {
-    const d = new Date(date);
-    console.log(`Creating date with ${d}`);
+  async add(newFlightDto: NewFlightDto) {
+    const { planeId, date } = newFlightDto;
 
     const plane = await this.planeService.getPlaneById(planeId);
     if (!plane) {
       throw new BadRequestException('Plane not found with the given id');
     }
-    const flight = await this.repo.add(planeId, d);
+    const flight = await this.repo.add(newFlightDto);
     return this.repo.save(flight);
   }
 
@@ -58,16 +58,7 @@ export class FlightService {
   getFlights(planeId?: string, date?: number) {
     var dateTime: Date | undefined;
 
-    if (date) {
-      dateTime = new Date(date);
-      Logger.log(`date is ${date} and Date: ${dateTime}`);
-    }
-    return this.repo.find({
-      where: {
-        planeId,
-        departureDate: dateTime,
-      },
-    });
+    return this.repo.getAllFlightsFor(planeId, date);
   }
 
   async getFlightById(id: string) {

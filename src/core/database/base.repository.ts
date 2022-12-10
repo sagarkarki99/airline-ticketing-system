@@ -7,7 +7,7 @@ export abstract class BaseRepository<T extends any> {
   async save(m: T) {
     try {
       const createdModel = new this.model(m);
-      return await createdModel;
+      return await createdModel.save();
     } catch (error) {
       Logger.error(error.toString(), BaseRepository.name);
       if (error.code === 11000) {

@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
+import { Airport } from './Airport.entity';
 
 export enum FlightStatus {
   inAir = 'inAir',
@@ -17,6 +18,12 @@ export class Flight {
 
   @Prop()
   departureDate: Date;
+
+  @Prop({ type: String, ref: 'Airport' })
+  from: string;
+
+  @Prop({ type: String, ref: 'Airport' })
+  to: string;
 
   @Prop({ type: String, enum: FlightStatus, default: FlightStatus.ready })
   status: FlightStatus;
