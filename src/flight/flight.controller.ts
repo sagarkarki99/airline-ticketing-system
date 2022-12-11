@@ -28,10 +28,12 @@ export class FlightController {
   @Post('/')
   async addNew(@Body() body: NewFlightDto): Promise<FlightResponseDto> {
     const flight = await this.flightService.add(body);
+    console.log(flight);
+
     return {
       id: flight.id,
       departureDate: flight.departureDate,
-      planeId: flight.planeId,
+      plane: body.planeId,
       status: flight.status,
       from: flight.from,
       to: flight.to,
@@ -41,8 +43,10 @@ export class FlightController {
   @Get('/')
   @ApiQuery({ required: false, name: 'date', type: Number })
   @ApiQuery({ required: false, name: 'planeId', type: String })
-  getFlights(@Query('planeId') planeId?: string, @Query('date') date?: string) {
-    console.log(`PlaneId: ${planeId}, date: ${date}`);
+  async getFlights(
+    @Query('planeId') planeId?: string,
+    @Query('date') date?: string,
+  ) {
     return this.flightService.getFlights(planeId, parseInt(date));
   }
 

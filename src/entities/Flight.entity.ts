@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { Airport } from './Airport.entity';
+import { Plane } from './Plane.entity';
 
 export enum FlightStatus {
   inAir = 'inAir',
@@ -14,7 +15,7 @@ export type FlightDocument = Flight & mongoose.Document;
 @Schema()
 export class Flight {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Plane' })
-  planeId: string;
+  plane: Plane;
 
   @Prop()
   departureDate: Date;

@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { FilterQuery, Model } from 'mongoose';
 import { BaseRepository } from 'src/core/database/base.repository';
 import { Flight, FlightDocument } from 'src/entities/Flight.entity';
 import { NewFlightDto } from './dtos/new-flight.dto';
@@ -17,7 +17,7 @@ export class FlightRepository extends BaseRepository<FlightDocument> {
   async add(newFlightDto: NewFlightDto) {
     const fullDate = newFlightDto.fullDate();
     const flightModel = new this.flightModel({
-      planeId: newFlightDto.planeId,
+      plane: newFlightDto.planeId,
       departureDate: fullDate,
       to: newFlightDto.to,
       from: newFlightDto.from,
@@ -27,30 +27,32 @@ export class FlightRepository extends BaseRepository<FlightDocument> {
   }
 
   async getAllFlightsFor(planeId?: string, date?: number) {
+    var query: FilterQuery<FlightDocument> = [];
     if (date && planeId) {
       const dateTime = new Date(date);
       Logger.log(`date is ${date} and Date: ${dateTime}`);
-      return this.find({
-        where: {
-          planeId,
-          departureDate: dateTime,
-        },
-      });
+      query = {
+        plane: planeId,
+        departureDate: dateTime,
+      };
     } else if (date) {
       const dateTime = new Date(date);
-      return this.find({
-        where: {
-          departureDate: dateTime,
-        },
-      });
+      query = {
+        departureDate: dateTime,
+      };
     } else if (planeId) {
-      return this.find({
-        where: {
-          planeId,
-        },
-      });
-    } else {
-      return this.find();
+      query = {
+        planeId,
+      };
     }
+
+    return this.flightModel
+      .find(
+        {
+          where: query,
+        },
+        { __v: 0 },
+      )
+      .populate('plane', { __v: 0 });
   }
 }

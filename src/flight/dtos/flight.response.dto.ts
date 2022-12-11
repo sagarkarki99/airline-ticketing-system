@@ -8,7 +8,7 @@ export class FlightResponseDto {
 
   @Expose()
   @ApiProperty({ type: String })
-  planeId: string;
+  plane: string;
 
   @Expose()
   @ApiProperty({ type: String })
