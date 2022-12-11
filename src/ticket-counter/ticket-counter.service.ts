@@ -45,6 +45,10 @@ export class TicketCounterService {
     return value;
   }
 
+  async getTicketDetail(ticketId: string) {
+    return this.repo.findOne(ticketId);
+  }
+
   async cancelTicketFor(ticketId: string) {
     const ticket = await this.repo.findById(ticketId);
     if (!ticket) {

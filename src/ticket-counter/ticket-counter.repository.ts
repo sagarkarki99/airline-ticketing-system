@@ -23,7 +23,17 @@ export class TicketCounterRepository extends BaseRepository<TicketDocument> {
   }
 
   async findByUser(userId: mongoose.Schema.Types.ObjectId) {
-    return this.find({ userId: userId });
+    return await this.ticketModel
+      .find({ userId: userId }, { __v: 0 })
+      .populate('flightId', { __v: 0 });
+  }
+
+  async findOne(ticketId: string): Promise<TicketDocument> {
+    const ticketDoc = await (
+      await this.ticketModel.findOne({ id: ticketId }, { __v: 0 })
+    ).populate('flightId', { __v: 0 });
+
+    return ticketDoc;
   }
 
   async saveTicket(seatId: string, userId: string, flight: FlightDocument) {

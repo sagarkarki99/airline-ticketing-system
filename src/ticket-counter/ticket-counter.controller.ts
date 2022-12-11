@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
@@ -32,6 +33,13 @@ export class TicketCounterController {
   @Roles(UserRole.normal, UserRole.admin)
   getUserTickets(@User() user: _user) {
     return this.ticketService.getTickets(user);
+  }
+
+  @Get(':id')
+  @Roles(UserRole.normal, UserRole.admin)
+  async getTicketDetail(@User() user: _user, @Query() ticketId: string) {
+    const doc = await this.ticketService.getTicketDetail(ticketId);
+    return doc;
   }
 
   @Delete('/:ticketNumber')
