@@ -13,6 +13,6 @@ import { PlaneSeatService } from './plane-seat.service';
     ]),
   ],
   providers: [PlaneSeatService, PlaneSeatRepository],
-  exports: [PlaneSeatService],
+  exports: [PlaneSeatService, PlaneSeatRepository],
 })
 export class PlaneSeatModule {}

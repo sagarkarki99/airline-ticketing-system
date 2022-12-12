@@ -3,11 +3,13 @@ import {
   forwardRef,
   Inject,
   Injectable,
+  InternalServerErrorException,
   Logger,
   NotFoundException,
 } from '@nestjs/common';
 import mongoose from 'mongoose';
 import { PlaneCounterService } from 'src/plane-counter/plane-counter.service';
+import { PlaneSeatService } from 'src/plane-seat/plane-seat.service';
 import { TicketCounterService } from 'src/ticket-counter/ticket-counter.service';
 import { NewFlightDto } from './dtos/new-flight.dto';
 import { SeatResponseDto } from './dtos/seat-response.dto';
@@ -21,6 +23,7 @@ export class FlightService {
     private readonly planeService: PlaneCounterService,
     @Inject(forwardRef(() => TicketCounterService))
     private readonly ticketService: TicketCounterService,
+    private readonly planeSeatService: PlaneSeatService,
   ) {}
 
   async add(newFlightDto: NewFlightDto) {
@@ -35,24 +38,24 @@ export class FlightService {
   }
 
   async getSeats(flightId: string, planeId: string) {
-    const tickets = await this.ticketService.getTicketFor(flightId);
+    try {
+      const tickets = await this.ticketService.getTicketFor(flightId);
 
-    // const seats = await this.dataSource
-    //   .getRepository(PlaneSeat)
-    //   .findBy({ plane: planeId });
-    //TODO: create a seperate module for seats and get it from there.
-    const seats = [];
+      const seats = await this.planeSeatService.getSeats(planeId);
 
-    const newSeats = seats.map((seat) => {
-      const responseDto = new SeatResponseDto();
-      responseDto.id = seat.id;
-      responseDto.seatNo = seat.seatNo;
-      responseDto.isBooked = tickets.some(
-        (ticket) => ticket.flightId === flightId,
-      );
-      return responseDto;
-    });
-    return newSeats;
+      const newSeats = seats.map((seat) => {
+        const responseDto = new SeatResponseDto();
+        responseDto.id = seat.id;
+        responseDto.seatNo = seat.seatNo;
+        responseDto.isBooked = tickets.some(
+          (ticket) => seat.seatNo === ticket.seatId,
+        );
+        return responseDto;
+      });
+      return newSeats;
+    } catch (error) {
+      throw new InternalServerErrorException('Cannot fetch available seats.');
+    }
   }
 
   getFlights(planeId?: string, date?: number) {
